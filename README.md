@@ -56,7 +56,7 @@ This repository is an **open-source** collection of **algorithmic trading strate
 | **Database Storage** | ✅ PostgreSQL | ✅ PostgreSQL | ⚙️ Coming Soon | ⚙️ Coming Soon | ⚙️ Coming Soon |
 | **API Cost** | 🆓 **Free** | 💰 ₹2000/month | 💰 Paid | 💰 Paid | 💰 Paid |
 | **GitHub Link** | [View Code](https://github.com/buzzsubash/algo_trading_strategies_india/tree/main/historical-data-collection/shoonya-finvasia) | [View Code](https://github.com/buzzsubash/algo_trading_strategies_india/tree/main/historical-data-collection) | *Coming Soon* | *Coming Soon* | *Coming Soon* |
-```
+
 ---
 
 ## 📌 How to Use
