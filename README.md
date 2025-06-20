@@ -48,14 +48,14 @@ This repository is an **open-source** collection of **algorithmic trading strate
 
 ### 📊 **Historical Data**
 
-| **Data Source** | **Finvasia Shoonya** | **Zerodha Kite** | **AngelOne** | **Upstox** | **Fyers** |
-|----------------|---------------------|------------------|--------------|------------|-----------|
-| **Equity Data (NSE/BSE)** | ✅ **Ready** | ✅ **Ready** | ⚙️ Coming Soon | ⚙️ Coming Soon | ⚙️ Coming Soon |
-| **Options Data** | ⚙️ In Development | ⚙️ In Development | ⚙️ Coming Soon | ⚙️ Coming Soon | ⚙️ Coming Soon |
-| **Futures Data** | ⚙️ In Development | ⚙️ In Development | ⚙️ Coming Soon | ⚙️ Coming Soon | ⚙️ Coming Soon |
-| **Database Storage** | ✅ PostgreSQL | ✅ PostgreSQL | ⚙️ Coming Soon | ⚙️ Coming Soon | ⚙️ Coming Soon |
-| **API Cost** | 🆓 **Free** | 💰 ₹2000/month | 💰 Paid | 💰 Paid | 💰 Paid |
-| **GitHub Link** | [View Code](https://github.com/buzzsubash/algo_trading_strategies_india/tree/main/historical-data-collection/shoonya-finvasia) | [View Code](https://github.com/buzzsubash/algo_trading_strategies_india/tree/main/historical-data-collection) | *Coming Soon* | *Coming Soon* | *Coming Soon* |
+| **Data Source** | **Finvasia Shoonya** | **Zerodha Kite**                                                                                               | **AngelOne** | **Upstox** | **Fyers** |
+|----------------|---------------------|----------------------------------------------------------------------------------------------------------------|--------------|------------|-----------|
+| **Equity Data (NSE/BSE)** | ✅ **Ready** | ✅ **Ready**                                                                                                    | ⚙️ Coming Soon | ⚙️ Coming Soon | ⚙️ Coming Soon |
+| **Options Data** | ⚙️ In Development | ⚙️ In Development                                                                                              | ⚙️ Coming Soon | ⚙️ Coming Soon | ⚙️ Coming Soon |
+| **Futures Data** | ⚙️ In Development | ⚙️ In Development                                                                                              | ⚙️ Coming Soon | ⚙️ Coming Soon | ⚙️ Coming Soon |
+| **Database Storage** | ✅ PostgreSQL | ✅ PostgreSQL                                                                                                   | ⚙️ Coming Soon | ⚙️ Coming Soon | ⚙️ Coming Soon |
+| **API Cost** | 🆓 **Free** | 💰 ₹2000/month                                                                                                 | 💰 Paid | 💰 Paid | 💰 Paid |
+| **GitHub Link** | [View Code](https://github.com/buzzsubash/algo_trading_strategies_india/tree/main/historical-data-collection/shoonya-finvasia) | [View Code](https://github.com/buzzsubash/algo_trading_strategies_india/tree/main/historical-data-collection/zerodha-kite-api) | *Coming Soon* | *Coming Soon* | *Coming Soon* |
 
 ---
 
