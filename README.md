@@ -59,6 +59,20 @@ This repository is an **open-source** collection of **algorithmic trading strate
 
 ---
 
+### 🔧 **Broker Utilities & Auto-Login Scripts**
+
+| **Utility Type** | **Broker** | **Description** | **Status** | **Features** | **GitHub Link** |
+|------------------|------------|-----------------|------------|--------------|-----------------|
+| **Auto-Login** | **Zerodha Kite** | Automated login with 2FA support | ✅ **Ready** | • TOTP Authentication<br>• Token Management<br>• Telegram Notifications<br>• Retry Mechanism<br>• Error Handling | [View Code](https://github.com/buzzsubash/algo_trading_strategies_india/blob/main/broker-utilities/zerodha-kite-connect-auto-login.py) |
+| **Auto-Login** | **AngelOne** | Automated login script | ⚙️ **In Development** | • Session Management<br>• Token Storage<br>• Error Recovery | *Coming Soon* |
+| **Auto-Login** | **Upstox** | Automated login script | ⚙️ **In Development** | • OAuth Integration<br>• Token Refresh<br>• Logging | *Coming Soon* |
+| **Auto-Login** | **Fyers** | Automated login script | ⚙️ **In Development** | • PIN-based Auth<br>• Session Persistence | *Coming Soon* |
+| **Session Manager** | **Multi-Broker** | Universal session management | ⚙️ **Planned** | • Cross-broker Support<br>• Unified Interface<br>• Health Monitoring | *Coming Soon* |
+| **Token Validator** | **Multi-Broker** | Token validation utility | ⚙️ **Planned** | • Real-time Validation<br>• Auto-refresh<br>• Alerts | *Coming Soon* |
+
+---
+---
+
 ## 📌 How to Use
 1. Clone this repository:
    ```sh
