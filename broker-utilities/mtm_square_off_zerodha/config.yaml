@@ -1,0 +1,56 @@
+# Enhanced Zerodha MTM Monitor Configuration - Trading Discipline Mode
+# File: config.yaml
+
+zerodha:
+  api_key: ""
+  api_secret: ""
+
+trading:
+  # MTM loss threshold in rupees (negative value for loss)
+  mtm_loss_threshold: -1
+
+  # Daily max profit target - once hit, stop trading for the day
+  daily_max_profit_target: 2
+
+# Risk management settings
+risk_management:
+  # Enable/disable auto square-off
+  auto_square_off_enabled: true
+
+  # Order retry settings
+  max_order_retries: 2
+  order_retry_delay: 3  # seconds between retries
+
+  # Order execution verification timeouts
+  order_status_check_interval: 2  # seconds between status checks
+
+  # API timeout settings
+  api_call_timeout: 15  # seconds for general API calls
+  order_placement_timeout: 30  # seconds for order placement
+  order_verification_timeout: 45  # seconds for order verification
+
+# Volume freeze quantities for different instruments
+instruments:
+  BANKNIFTY:
+    volume_freeze_quantity: 900
+  NIFTY:
+    volume_freeze_quantity: 1800
+  FINNIFTY:
+    volume_freeze_quantity: 1800
+  MIDCPNIFTY:
+    volume_freeze_quantity: 4200
+  SENSEX:
+    volume_freeze_quantity: 1000
+  BANKEX:
+    volume_freeze_quantity: 1000
+
+# WebSocket configuration for LTP subscriber
+websocket:
+  # Position monitoring intervals
+  position_check_interval: 5  # seconds (used in zerodha_ltp_subscriber.py)
+  error_retry_interval: 30  # seconds (used in zerodha_ltp_subscriber.py)
+
+# LTP data freshness management
+ltp_management:
+  # Maximum age of LTP data before considering it stale
+  freshness_threshold_seconds: 10  # used in get_ltp_with_refresh method
