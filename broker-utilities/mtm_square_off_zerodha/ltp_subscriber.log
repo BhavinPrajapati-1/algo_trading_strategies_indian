@@ -1,0 +1,340 @@
+2025-07-29 10:55:46,295 - INFO - Configuration loaded successfully
+2025-07-29 10:55:46,428 - INFO - Connected to Kite API. User: Puthanveedu Udayan Vinitha
+2025-07-29 10:55:46,429 - INFO - Database setup completed
+2025-07-29 10:55:46,429 - INFO - WebSocket client initialized
+2025-07-29 10:55:46,429 - INFO - Starting Zerodha LTP Subscriber...
+2025-07-29 10:55:46,430 - INFO - Position monitoring started with 5s interval
+2025-07-29 10:55:46,769 - INFO - WebSocket connected successfully
+2025-07-29 10:55:46,849 - INFO - Found 0 open positions
+2025-07-29 10:55:46,849 - INFO - No open positions to subscribe to
+2025-07-29 10:55:51,511 - INFO - Found 0 open positions
+2025-07-29 10:55:56,596 - INFO - Found 0 open positions
+2025-07-29 10:56:01,682 - INFO - Found 0 open positions
+2025-07-29 10:56:06,765 - INFO - Found 0 open positions
+2025-07-29 10:56:12,029 - INFO - Found 0 open positions
+2025-07-29 10:56:17,115 - INFO - Found 0 open positions
+2025-07-29 10:56:22,200 - INFO - Found 0 open positions
+2025-07-29 10:56:27,279 - INFO - Found 0 open positions
+2025-07-29 10:56:32,358 - INFO - Found 0 open positions
+2025-07-29 10:56:37,436 - INFO - Found 0 open positions
+2025-07-29 10:56:42,521 - INFO - Found 0 open positions
+2025-07-29 10:56:47,611 - INFO - Found 0 open positions
+2025-07-29 10:56:52,694 - INFO - Found 0 open positions
+2025-07-29 10:56:57,772 - INFO - Found 0 open positions
+2025-07-29 10:57:02,854 - INFO - Found 0 open positions
+2025-07-29 10:57:07,979 - INFO - Found 0 open positions
+2025-07-29 10:57:11,572 - ERROR - Connection error: 1006 - connection was closed uncleanly (peer dropped the TCP connection without previous WebSocket closing handshake)
+2025-07-29 10:57:11,573 - ERROR - WebSocket error: 1006 - connection was closed uncleanly (peer dropped the TCP connection without previous WebSocket closing handshake)
+2025-07-29 10:57:11,573 - ERROR - Connection closed: 1006 - connection was closed uncleanly (peer dropped the TCP connection without previous WebSocket closing handshake)
+2025-07-29 10:57:11,573 - WARNING - WebSocket closed: 1006 - connection was closed uncleanly (peer dropped the TCP connection without previous WebSocket closing handshake)
+2025-07-29 10:57:11,573 - INFO - LTP subscriber stopped successfully
+2025-07-29 14:51:00,540 - INFO - Configuration loaded successfully
+2025-07-29 14:51:00,684 - INFO - Connected to Kite API. User: Puthanveedu Udayan Vinitha
+2025-07-29 14:51:00,685 - INFO - Database setup completed
+2025-07-29 14:51:00,685 - INFO - WebSocket client initialized
+2025-07-29 14:51:00,685 - INFO - Starting Zerodha LTP Subscriber...
+2025-07-29 14:51:00,685 - INFO - Position monitoring started with 5s interval
+2025-07-29 14:51:00,986 - INFO - WebSocket connected successfully
+2025-07-29 14:51:01,068 - INFO - Found 0 open positions
+2025-07-29 14:51:01,069 - INFO - No open positions to subscribe to
+2025-07-29 14:51:05,770 - INFO - Found 0 open positions
+2025-07-29 14:51:11,016 - INFO - Found 0 open positions
+2025-07-29 14:51:16,092 - INFO - Found 0 open positions
+2025-07-29 14:51:21,167 - INFO - Found 0 open positions
+2025-07-29 14:51:26,249 - INFO - Found 0 open positions
+2025-07-29 14:51:31,332 - INFO - Found 0 open positions
+2025-07-29 14:51:36,419 - INFO - Found 1 open positions
+2025-07-29 14:51:36,419 - INFO - Position changes detected, updating subscriptions...
+2025-07-29 14:51:36,562 - INFO - Found 1 open positions
+2025-07-29 14:51:36,565 - INFO - Updated 1 positions in database
+2025-07-29 14:51:36,565 - INFO - Subscribed to 1 instrument tokens
+2025-07-29 14:51:36,565 - INFO - Subscribed symbols: SENSEX25JUL80900CE
+2025-07-29 14:51:41,649 - INFO - Found 0 open positions
+2025-07-29 14:51:41,649 - INFO - Position changes detected, updating subscriptions...
+2025-07-29 14:51:41,725 - INFO - Found 0 open positions
+2025-07-29 14:51:41,725 - INFO - No open positions to subscribe to
+2025-07-29 14:51:46,799 - INFO - Found 0 open positions
+2025-07-29 14:51:51,882 - INFO - Found 0 open positions
+2025-07-29 14:51:56,964 - INFO - Found 0 open positions
+2025-07-29 14:52:02,060 - INFO - Found 0 open positions
+2025-07-29 14:52:07,136 - INFO - Found 0 open positions
+2025-07-29 14:52:12,230 - INFO - Found 0 open positions
+2025-07-29 14:52:17,331 - INFO - Found 0 open positions
+2025-07-29 14:52:22,423 - INFO - Found 0 open positions
+2025-07-29 14:52:27,513 - INFO - Found 0 open positions
+2025-07-29 14:52:32,599 - INFO - Found 0 open positions
+2025-07-29 14:52:37,682 - INFO - Found 0 open positions
+2025-07-29 14:52:42,772 - INFO - Found 0 open positions
+2025-07-29 14:52:47,864 - INFO - Found 0 open positions
+2025-07-29 14:52:52,986 - INFO - Found 0 open positions
+2025-07-29 14:52:58,068 - INFO - Found 0 open positions
+2025-07-29 14:53:03,163 - INFO - Found 0 open positions
+2025-07-29 14:53:08,245 - INFO - Found 0 open positions
+2025-07-29 14:53:13,499 - INFO - Found 0 open positions
+2025-07-29 14:53:18,577 - INFO - Found 0 open positions
+2025-07-29 14:53:23,654 - INFO - Found 0 open positions
+2025-07-29 14:53:28,736 - INFO - Found 1 open positions
+2025-07-29 14:53:28,736 - INFO - Position changes detected, updating subscriptions...
+2025-07-29 14:53:28,817 - INFO - Found 1 open positions
+2025-07-29 14:53:28,822 - INFO - Updated 1 positions in database
+2025-07-29 14:53:28,822 - INFO - Subscribed to 1 instrument tokens
+2025-07-29 14:53:28,823 - INFO - Subscribed symbols: SENSEX25JUL80900PE
+2025-07-29 14:53:33,927 - INFO - Found 0 open positions
+2025-07-29 14:53:33,927 - INFO - Position changes detected, updating subscriptions...
+2025-07-29 14:53:34,061 - INFO - Found 0 open positions
+2025-07-29 14:53:34,062 - INFO - No open positions to subscribe to
+2025-07-29 14:53:39,146 - INFO - Found 0 open positions
+2025-07-29 14:53:44,227 - INFO - Found 0 open positions
+2025-07-29 14:53:49,311 - INFO - Found 0 open positions
+2025-07-29 14:53:54,390 - INFO - Found 1 open positions
+2025-07-29 14:53:54,390 - INFO - Position changes detected, updating subscriptions...
+2025-07-29 14:53:54,472 - INFO - Found 1 open positions
+2025-07-29 14:53:54,476 - INFO - Updated 1 positions in database
+2025-07-29 14:53:54,476 - INFO - Subscribed to 1 instrument tokens
+2025-07-29 14:53:54,476 - INFO - Subscribed symbols: SENSEX25JUL80900PE
+2025-07-29 14:53:59,552 - INFO - Found 0 open positions
+2025-07-29 14:53:59,552 - INFO - Position changes detected, updating subscriptions...
+2025-07-29 14:53:59,630 - INFO - Found 0 open positions
+2025-07-29 14:53:59,630 - INFO - No open positions to subscribe to
+2025-07-29 14:54:04,721 - INFO - Found 0 open positions
+2025-07-29 14:54:09,867 - INFO - Found 1 open positions
+2025-07-29 14:54:09,867 - INFO - Position changes detected, updating subscriptions...
+2025-07-29 14:54:09,948 - INFO - Found 1 open positions
+2025-07-29 14:54:09,952 - INFO - Updated 1 positions in database
+2025-07-29 14:54:09,952 - INFO - Subscribed to 1 instrument tokens
+2025-07-29 14:54:09,952 - INFO - Subscribed symbols: SENSEX25JUL80900PE
+2025-07-29 14:54:15,036 - INFO - Found 1 open positions
+2025-07-29 14:54:20,122 - INFO - Found 0 open positions
+2025-07-29 14:54:20,122 - INFO - Position changes detected, updating subscriptions...
+2025-07-29 14:54:20,208 - INFO - Found 0 open positions
+2025-07-29 14:54:20,208 - INFO - No open positions to subscribe to
+2025-07-29 14:54:25,304 - INFO - Found 0 open positions
+2025-07-29 14:54:30,385 - INFO - Found 0 open positions
+2025-07-29 14:54:35,478 - INFO - Found 0 open positions
+2025-07-29 14:54:40,615 - INFO - Found 0 open positions
+2025-07-29 14:54:45,909 - INFO - Found 0 open positions
+2025-07-29 14:54:50,988 - INFO - Found 0 open positions
+2025-07-29 14:54:56,088 - INFO - Found 0 open positions
+2025-07-29 14:55:01,171 - INFO - Found 0 open positions
+2025-07-29 14:55:06,257 - INFO - Found 0 open positions
+2025-07-29 14:55:11,351 - INFO - Found 0 open positions
+2025-07-29 14:55:16,442 - INFO - Found 0 open positions
+2025-07-29 14:55:21,521 - INFO - Found 0 open positions
+2025-07-29 14:55:26,616 - INFO - Found 0 open positions
+2025-07-29 14:55:31,689 - INFO - Found 0 open positions
+2025-07-29 14:55:36,784 - INFO - Found 0 open positions
+2025-07-29 14:55:41,864 - INFO - Found 0 open positions
+2025-07-29 14:55:46,961 - INFO - Found 0 open positions
+2025-07-29 14:55:52,061 - INFO - Found 0 open positions
+2025-07-29 14:55:57,189 - INFO - Found 0 open positions
+2025-07-29 14:56:02,279 - INFO - Found 0 open positions
+2025-07-29 14:56:07,380 - INFO - Found 0 open positions
+2025-07-29 14:56:12,502 - INFO - Found 0 open positions
+2025-07-29 14:56:17,607 - INFO - Found 0 open positions
+2025-07-29 14:56:22,688 - INFO - Found 0 open positions
+2025-07-29 14:56:27,769 - INFO - Found 0 open positions
+2025-07-29 14:56:32,849 - INFO - Found 0 open positions
+2025-07-29 14:56:37,941 - INFO - Found 0 open positions
+2025-07-29 14:56:43,017 - INFO - Found 0 open positions
+2025-07-29 14:56:48,096 - INFO - Found 0 open positions
+2025-07-29 14:56:53,172 - INFO - Found 0 open positions
+2025-07-29 14:56:58,255 - INFO - Found 0 open positions
+2025-07-29 14:57:03,349 - INFO - Found 0 open positions
+2025-07-29 14:57:07,974 - ERROR - Connection error: 1006 - connection was closed uncleanly (peer dropped the TCP connection without previous WebSocket closing handshake)
+2025-07-29 14:57:07,974 - ERROR - WebSocket error: 1006 - connection was closed uncleanly (peer dropped the TCP connection without previous WebSocket closing handshake)
+2025-07-29 14:57:07,974 - ERROR - Connection closed: 1006 - connection was closed uncleanly (peer dropped the TCP connection without previous WebSocket closing handshake)
+2025-07-29 14:57:07,974 - WARNING - WebSocket closed: 1006 - connection was closed uncleanly (peer dropped the TCP connection without previous WebSocket closing handshake)
+2025-07-29 14:57:07,974 - INFO - LTP subscriber stopped successfully
+2025-07-29 14:57:43,679 - INFO - Configuration loaded successfully
+2025-07-29 14:57:43,804 - INFO - Connected to Kite API. User: Puthanveedu Udayan Vinitha
+2025-07-29 14:57:43,805 - INFO - Database setup completed
+2025-07-29 14:57:43,805 - INFO - WebSocket client initialized
+2025-07-29 14:57:43,805 - INFO - Starting Zerodha LTP Subscriber...
+2025-07-29 14:57:43,805 - INFO - Position monitoring started with 5s interval
+2025-07-29 14:57:44,110 - INFO - WebSocket connected successfully
+2025-07-29 14:57:44,191 - INFO - Found 1 open positions
+2025-07-29 14:57:44,196 - INFO - Updated 1 positions in database
+2025-07-29 14:57:44,196 - INFO - Subscribed to 1 instrument tokens
+2025-07-29 14:57:44,196 - INFO - Subscribed symbols: SENSEX25JUL80900PE
+2025-07-29 14:57:48,886 - INFO - Found 1 open positions
+2025-07-29 14:57:53,969 - INFO - Found 1 open positions
+2025-07-29 14:57:59,049 - INFO - Found 0 open positions
+2025-07-29 14:57:59,049 - INFO - Position changes detected, updating subscriptions...
+2025-07-29 14:57:59,126 - INFO - Found 0 open positions
+2025-07-29 14:57:59,127 - INFO - No open positions to subscribe to
+2025-07-29 14:58:04,220 - INFO - Found 0 open positions
+2025-07-29 14:58:09,300 - INFO - Found 0 open positions
+2025-07-29 14:58:14,393 - INFO - Found 0 open positions
+2025-07-29 14:58:19,474 - INFO - Found 0 open positions
+2025-07-29 14:58:24,554 - INFO - Found 0 open positions
+2025-07-29 14:58:29,641 - INFO - Found 0 open positions
+2025-07-29 14:58:34,728 - INFO - Found 0 open positions
+2025-07-29 14:58:39,807 - INFO - Found 0 open positions
+2025-07-29 14:58:44,897 - INFO - Found 0 open positions
+2025-07-29 14:58:49,975 - INFO - Found 0 open positions
+2025-07-29 14:58:55,056 - INFO - Found 0 open positions
+2025-07-29 14:59:00,141 - INFO - Found 0 open positions
+2025-07-29 14:59:05,224 - INFO - Found 0 open positions
+2025-07-29 14:59:10,305 - INFO - Found 0 open positions
+2025-07-29 14:59:15,415 - INFO - Found 0 open positions
+2025-07-29 14:59:20,492 - INFO - Found 0 open positions
+2025-07-29 14:59:25,575 - INFO - Found 0 open positions
+2025-07-29 14:59:30,684 - INFO - Found 0 open positions
+2025-07-29 14:59:35,763 - INFO - Found 0 open positions
+2025-07-29 14:59:40,865 - INFO - Found 0 open positions
+2025-07-29 14:59:45,954 - INFO - Found 0 open positions
+2025-07-29 14:59:51,036 - INFO - Found 0 open positions
+2025-07-29 14:59:56,119 - INFO - Found 0 open positions
+2025-07-29 15:00:01,209 - INFO - Found 0 open positions
+2025-07-29 15:00:06,311 - INFO - Found 0 open positions
+2025-07-29 15:00:11,391 - INFO - Found 0 open positions
+2025-07-29 15:00:16,482 - INFO - Found 0 open positions
+2025-07-29 15:00:18,406 - ERROR - Connection error: 1006 - connection was closed uncleanly (peer dropped the TCP connection without previous WebSocket closing handshake)
+2025-07-29 15:00:18,406 - ERROR - WebSocket error: 1006 - connection was closed uncleanly (peer dropped the TCP connection without previous WebSocket closing handshake)
+2025-07-29 15:00:18,406 - ERROR - Connection closed: 1006 - connection was closed uncleanly (peer dropped the TCP connection without previous WebSocket closing handshake)
+2025-07-29 15:00:18,406 - WARNING - WebSocket closed: 1006 - connection was closed uncleanly (peer dropped the TCP connection without previous WebSocket closing handshake)
+2025-07-29 15:00:18,412 - INFO - LTP subscriber stopped successfully
+2025-07-29 15:00:25,564 - INFO - Configuration loaded successfully
+2025-07-29 15:00:25,917 - INFO - Connected to Kite API. User: Puthanveedu Udayan Vinitha
+2025-07-29 15:00:25,918 - INFO - Database setup completed
+2025-07-29 15:00:25,918 - INFO - WebSocket client initialized
+2025-07-29 15:00:25,918 - INFO - Starting Zerodha LTP Subscriber...
+2025-07-29 15:00:25,918 - INFO - Position monitoring started with 5s interval
+2025-07-29 15:00:26,255 - INFO - WebSocket connected successfully
+2025-07-29 15:00:26,344 - INFO - Found 0 open positions
+2025-07-29 15:00:26,345 - INFO - No open positions to subscribe to
+2025-07-29 15:00:31,013 - INFO - Found 0 open positions
+2025-07-29 15:00:36,097 - INFO - Found 0 open positions
+2025-07-29 15:00:41,176 - INFO - Found 0 open positions
+2025-07-29 15:00:46,276 - INFO - Found 0 open positions
+2025-07-29 15:00:51,366 - INFO - Found 0 open positions
+2025-07-29 15:00:56,481 - INFO - Found 0 open positions
+2025-07-29 15:01:01,578 - INFO - Found 1 open positions
+2025-07-29 15:01:01,579 - INFO - Position changes detected, updating subscriptions...
+2025-07-29 15:01:01,691 - INFO - Found 1 open positions
+2025-07-29 15:01:01,694 - INFO - Updated 1 positions in database
+2025-07-29 15:01:01,695 - INFO - Subscribed to 1 instrument tokens
+2025-07-29 15:01:01,695 - INFO - Subscribed symbols: SENSEX25JUL80900CE
+2025-07-29 15:01:06,784 - INFO - Found 0 open positions
+2025-07-29 15:01:06,784 - INFO - Position changes detected, updating subscriptions...
+2025-07-29 15:01:06,865 - INFO - Found 0 open positions
+2025-07-29 15:01:06,865 - INFO - No open positions to subscribe to
+2025-07-29 15:01:11,958 - INFO - Found 1 open positions
+2025-07-29 15:01:11,958 - INFO - Position changes detected, updating subscriptions...
+2025-07-29 15:01:12,038 - INFO - Found 1 open positions
+2025-07-29 15:01:12,041 - INFO - Updated 1 positions in database
+2025-07-29 15:01:12,042 - INFO - Subscribed to 1 instrument tokens
+2025-07-29 15:01:12,042 - INFO - Subscribed symbols: SENSEX25JUL80900CE
+2025-07-29 15:01:17,142 - INFO - Found 1 open positions
+2025-07-29 15:01:22,226 - INFO - Found 1 open positions
+2025-07-29 15:01:27,324 - INFO - Found 0 open positions
+2025-07-29 15:01:27,324 - INFO - Position changes detected, updating subscriptions...
+2025-07-29 15:01:27,414 - INFO - Found 0 open positions
+2025-07-29 15:01:27,415 - INFO - No open positions to subscribe to
+2025-07-29 15:01:32,506 - INFO - Found 1 open positions
+2025-07-29 15:01:32,506 - INFO - Position changes detected, updating subscriptions...
+2025-07-29 15:01:32,609 - INFO - Found 1 open positions
+2025-07-29 15:01:32,613 - INFO - Updated 1 positions in database
+2025-07-29 15:01:32,613 - INFO - Subscribed to 1 instrument tokens
+2025-07-29 15:01:32,613 - INFO - Subscribed symbols: SENSEX25JUL80900CE
+2025-07-29 15:01:37,762 - INFO - Found 1 open positions
+2025-07-29 15:01:42,862 - INFO - Found 1 open positions
+2025-07-29 15:01:47,957 - INFO - Found 0 open positions
+2025-07-29 15:01:47,957 - INFO - Position changes detected, updating subscriptions...
+2025-07-29 15:01:48,044 - INFO - Found 0 open positions
+2025-07-29 15:01:48,044 - INFO - No open positions to subscribe to
+2025-07-29 15:01:53,201 - INFO - Found 0 open positions
+2025-07-29 15:01:58,284 - INFO - Found 0 open positions
+2025-07-29 15:02:03,369 - INFO - Found 0 open positions
+2025-07-29 15:02:08,451 - INFO - Found 0 open positions
+2025-07-29 15:02:13,531 - INFO - Found 0 open positions
+2025-07-29 15:02:18,610 - INFO - Found 0 open positions
+2025-07-29 15:02:23,699 - INFO - Found 0 open positions
+2025-07-29 15:02:28,786 - INFO - Found 0 open positions
+2025-07-29 15:02:33,864 - INFO - Found 1 open positions
+2025-07-29 15:02:33,864 - INFO - Position changes detected, updating subscriptions...
+2025-07-29 15:02:33,941 - INFO - Found 1 open positions
+2025-07-29 15:02:33,944 - INFO - Updated 1 positions in database
+2025-07-29 15:02:33,944 - INFO - Subscribed to 1 instrument tokens
+2025-07-29 15:02:33,944 - INFO - Subscribed symbols: SENSEX25JUL80900PE
+2025-07-29 15:02:39,029 - INFO - Found 0 open positions
+2025-07-29 15:02:39,029 - INFO - Position changes detected, updating subscriptions...
+2025-07-29 15:02:39,122 - INFO - Found 1 open positions
+2025-07-29 15:02:39,125 - INFO - Updated 1 positions in database
+2025-07-29 15:02:39,125 - INFO - Unsubscribed from 1 old tokens
+2025-07-29 15:02:39,125 - INFO - Subscribed to 1 instrument tokens
+2025-07-29 15:02:39,125 - INFO - Subscribed symbols: SENSEX25JUL80900CE
+2025-07-29 15:02:44,212 - INFO - Found 1 open positions
+2025-07-29 15:02:49,305 - INFO - Found 1 open positions
+2025-07-29 15:02:54,649 - INFO - Found 1 open positions
+2025-07-29 15:02:59,751 - INFO - Found 0 open positions
+2025-07-29 15:02:59,752 - INFO - Position changes detected, updating subscriptions...
+2025-07-29 15:02:59,893 - INFO - Found 0 open positions
+2025-07-29 15:02:59,893 - INFO - No open positions to subscribe to
+2025-07-29 15:03:04,976 - INFO - Found 0 open positions
+2025-07-29 15:03:10,059 - INFO - Found 0 open positions
+2025-07-29 15:03:15,160 - INFO - Found 0 open positions
+2025-07-29 15:03:20,260 - INFO - Found 0 open positions
+2025-07-29 15:03:25,342 - INFO - Found 0 open positions
+2025-07-29 15:03:30,439 - INFO - Found 1 open positions
+2025-07-29 15:03:30,439 - INFO - Position changes detected, updating subscriptions...
+2025-07-29 15:03:30,548 - INFO - Found 1 open positions
+2025-07-29 15:03:30,551 - INFO - Updated 1 positions in database
+2025-07-29 15:03:30,551 - INFO - Subscribed to 1 instrument tokens
+2025-07-29 15:03:30,551 - INFO - Subscribed symbols: SENSEX25JUL80900CE
+2025-07-29 15:03:35,646 - INFO - Found 1 open positions
+2025-07-29 15:03:40,731 - INFO - Found 1 open positions
+2025-07-29 15:03:45,819 - INFO - Found 0 open positions
+2025-07-29 15:03:45,819 - INFO - Position changes detected, updating subscriptions...
+2025-07-29 15:03:45,905 - INFO - Found 0 open positions
+2025-07-29 15:03:45,905 - INFO - No open positions to subscribe to
+2025-07-29 15:03:51,068 - INFO - Found 0 open positions
+2025-07-29 15:03:56,151 - INFO - Found 0 open positions
+2025-07-29 15:03:57,925 - ERROR - Connection error: 1006 - connection was closed uncleanly (peer dropped the TCP connection without previous WebSocket closing handshake)
+2025-07-29 15:03:57,925 - ERROR - WebSocket error: 1006 - connection was closed uncleanly (peer dropped the TCP connection without previous WebSocket closing handshake)
+2025-07-29 15:03:57,925 - ERROR - Connection closed: 1006 - connection was closed uncleanly (peer dropped the TCP connection without previous WebSocket closing handshake)
+2025-07-29 15:03:57,925 - WARNING - WebSocket closed: 1006 - connection was closed uncleanly (peer dropped the TCP connection without previous WebSocket closing handshake)
+2025-07-29 15:03:57,926 - INFO - LTP subscriber stopped successfully
+2025-07-29 15:07:30,771 - INFO - Configuration loaded successfully
+2025-07-29 15:07:31,104 - INFO - Connected to Kite API. User: Puthanveedu Udayan Vinitha
+2025-07-29 15:07:31,105 - INFO - Database setup completed
+2025-07-29 15:07:31,105 - INFO - WebSocket client initialized
+2025-07-29 15:07:31,105 - INFO - Starting Zerodha LTP Subscriber...
+2025-07-29 15:07:31,105 - INFO - Position monitoring started with 5s interval
+2025-07-29 15:07:31,452 - INFO - WebSocket connected successfully
+2025-07-29 15:07:31,719 - INFO - Found 1 open positions
+2025-07-29 15:07:31,727 - INFO - Updated 1 positions in database
+2025-07-29 15:07:31,727 - INFO - Subscribed to 1 instrument tokens
+2025-07-29 15:07:31,727 - INFO - Subscribed symbols: SENSEX25JUL80900PE
+2025-07-29 15:07:36,360 - INFO - Found 1 open positions
+2025-07-29 15:07:41,611 - INFO - Found 1 open positions
+2025-07-29 15:07:46,708 - INFO - Found 0 open positions
+2025-07-29 15:07:46,708 - INFO - Position changes detected, updating subscriptions...
+2025-07-29 15:07:46,802 - INFO - Found 0 open positions
+2025-07-29 15:07:46,802 - INFO - No open positions to subscribe to
+2025-07-29 15:07:51,890 - INFO - Found 0 open positions
+2025-07-29 15:07:56,976 - INFO - Found 0 open positions
+2025-07-29 15:08:02,246 - INFO - Found 0 open positions
+2025-07-29 15:08:07,340 - INFO - Found 0 open positions
+2025-07-29 15:08:12,446 - INFO - Found 0 open positions
+2025-07-29 15:08:17,542 - INFO - Found 0 open positions
+2025-07-29 15:08:22,792 - INFO - Found 0 open positions
+2025-07-29 15:08:27,888 - INFO - Found 0 open positions
+2025-07-29 15:08:33,139 - INFO - Found 0 open positions
+2025-07-29 15:08:38,226 - INFO - Found 0 open positions
+2025-07-29 15:08:43,311 - INFO - Found 0 open positions
+2025-07-29 15:08:48,561 - INFO - Found 0 open positions
+2025-07-29 15:08:53,814 - INFO - Found 0 open positions
+2025-07-29 15:08:58,901 - INFO - Found 0 open positions
+2025-07-29 15:09:04,169 - INFO - Found 0 open positions
+2025-07-29 15:09:09,255 - INFO - Found 0 open positions
+2025-07-29 15:09:14,509 - INFO - Found 0 open positions
+2025-07-29 15:09:19,597 - INFO - Found 0 open positions
+2025-07-29 15:09:24,689 - INFO - Found 0 open positions
+2025-07-29 15:09:29,775 - INFO - Found 0 open positions
+2025-07-29 15:09:35,034 - INFO - Found 0 open positions
+2025-07-29 15:09:40,125 - INFO - Found 0 open positions
+2025-07-29 15:09:45,378 - INFO - Found 0 open positions
+2025-07-29 15:09:50,493 - INFO - Found 0 open positions
+2025-07-29 15:09:55,578 - INFO - Found 0 open positions
+2025-07-29 15:10:00,839 - INFO - Found 0 open positions
