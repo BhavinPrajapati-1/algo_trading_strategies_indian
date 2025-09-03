@@ -71,6 +71,7 @@ This repository is an **open-source** collection of **algorithmic trading strate
 | **Auto-Login** | **Fyers** | Automated login script | ⚙️ **In Development** | • PIN-based Auth<br>• Session Persistence | *Coming Soon* |
 | **Session Manager** | **Multi-Broker** | Universal session management | ⚙️ **Planned** | • Cross-broker Support<br>• Unified Interface<br>• Health Monitoring | *Coming Soon* |
 | **Token Validator** | **Multi-Broker** | Token validation utility | ⚙️ **Planned** | • Real-time Validation<br>• Auto-refresh<br>• Alerts | *Coming Soon* |
+| **MTM Square-off System** | **Zerodha Kite** | Real-time MTM monitoring with automated square-off | ✅ **Ready** | • Real-time Position Monitoring<br>• Loss Threshold Protection<br>• Daily Profit Target Management<br>• Bulletproof Order Execution<br>• Trading Discipline Mode<br>• Volume Freeze Handling<br>• Comprehensive Logging | [View Code](https://github.com/buzzsubash/algo_trading_strategies_india/tree/main/broker-utilities/mtm_square_off_zerodha) |
 
 ---
 ---
