@@ -10,32 +10,60 @@ import logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
+# =============================================================================
+# CONFIGURABLE PARAMETERS - MODIFY THESE AS NEEDED
+# =============================================================================
+
+# Trading Configuration
+LOTS = 1  # Number of lots to trade
+LOT_SIZE = 75  # NIFTY lot size (changed from 50 to 75 from March 2025)
+CE_STOPLOSS_PERCENT = 25  # Call option stop loss percentage
+PE_STOPLOSS_PERCENT = 25  # Put option stop loss percentage
+
+# API Configuration
+API_KEY = ""  # Your Zerodha API key
+API_SECRET = ""  # API secret (if needed)
+ACCESS_TOKEN_FILE = "/home/ubuntu/access_token.txt"
+
+# Trading Times
+OPEN_TIME = dt.time(hour=9, minute=15)
+TRADE_ENTRY_TIME = dt.time(hour=9, minute=20)
+RE_ENTRY_TIME = dt.time(hour=12, minute=30)
+SQUARE_OFF_TIME = dt.time(hour=15, minute=6)
+
+# NSE Holidays for 2025 - UPDATE AS NEEDED
+NSE_HOLIDAYS = [
+    dt.date(2025, 1, 26), dt.date(2025, 3, 14), dt.date(2025, 3, 31),
+    dt.date(2025, 4, 11), dt.date(2025, 4, 14), dt.date(2025, 4, 18),
+    dt.date(2025, 5, 1), dt.date(2025, 8, 15), dt.date(2025, 10, 2),
+    dt.date(2025, 10, 31), dt.date(2025, 11, 15), dt.date(2025, 12, 25)
+]
+
+
+# =============================================================================
+# END OF CONFIGURABLE PARAMETERS
+# =============================================================================
 
 class NiftyTradingBot:
     def __init__(self):
-        # Configuration
-        self.lots = 1  # quantity
-        self.lot_size = 75  # NIFTY lot size (changed from 50 to 75 from March 2025)
-        self.ce_stoploss_per = 25
-        self.pe_stoploss_per = 25
+        # Use global configuration parameters
+        self.lots = LOTS
+        self.lot_size = LOT_SIZE
+        self.ce_stoploss_per = CE_STOPLOSS_PERCENT
+        self.pe_stoploss_per = PE_STOPLOSS_PERCENT
 
-        # NSE Holidays - Updated for 2025
-        self.nse_holidays = [
-            dt.date(2025, 1, 26), dt.date(2025, 3, 14), dt.date(2025, 3, 31),
-            dt.date(2025, 4, 11), dt.date(2025, 4, 14), dt.date(2025, 4, 18),
-            dt.date(2025, 5, 1), dt.date(2025, 8, 15), dt.date(2025, 10, 2),
-            dt.date(2025, 10, 31), dt.date(2025, 11, 15), dt.date(2025, 12, 25)
-        ]
+        # NSE Holidays
+        self.nse_holidays = NSE_HOLIDAYS
 
-        # API Configuration - Use your existing credentials
-        self.api_key = "1t306nxawlfv28w4"  # From your working script
-        self.api_secret = ""
+        # API Configuration
+        self.api_key = API_KEY
+        self.api_secret = API_SECRET
 
         # Trading Times
-        self.open_time = dt.time(hour=9, minute=15)
-        self.trade_entry_time = dt.time(hour=9, minute=20)
-        self.re_entry_time = dt.time(hour=12, minute=30)
-        self.sqf_time = dt.time(hour=15, minute=6)
+        self.open_time = OPEN_TIME
+        self.trade_entry_time = TRADE_ENTRY_TIME
+        self.re_entry_time = RE_ENTRY_TIME
+        self.sqf_time = SQUARE_OFF_TIME
 
         # Initialize KiteConnect
         self.access_token = self.load_access_token()
@@ -58,10 +86,10 @@ class NiftyTradingBot:
     def load_access_token(self):
         """Load access token from file"""
         try:
-            with open('/home/ubuntu/utilities/kite_connect_data/tickjournal/key_files/access_token.txt', 'r') as f:
+            with open(ACCESS_TOKEN_FILE, 'r') as f:
                 return f.read().strip()
         except FileNotFoundError:
-            logger.error("Access token file not found")
+            logger.error(f"Access token file not found: {ACCESS_TOKEN_FILE}")
             raise
 
     def get_expiry_date(self):
