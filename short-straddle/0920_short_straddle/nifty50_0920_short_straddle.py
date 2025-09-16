@@ -5,6 +5,7 @@ import pandas as pd
 import datetime as dt
 import time
 import logging
+import threading
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -19,6 +20,12 @@ LOTS = 1  # Number of lots to trade
 LOT_SIZE = 75  # NIFTY lot size (changed from 50 to 75 from March 2025)
 CE_STOPLOSS_PERCENT = 25  # Call option stop loss percentage
 PE_STOPLOSS_PERCENT = 25  # Put option stop loss percentage
+
+# Stop Loss Configuration
+SL_SLIPPAGE_BUFFER = 5.0  # Additional points buffer for slippage protection
+SL_MONITORING_INTERVAL = 0.5  # Seconds between SL monitoring checks
+MAX_LOSS_MULTIPLIER = 1.5  # Maximum loss allowed (1.5x of intended SL)
+ENABLE_SL_MONITORING = True  # Enable continuous SL monitoring
 
 # API Configuration
 API_KEY = ""  # Your Zerodha API key
@@ -51,6 +58,10 @@ class NiftyTradingBot:
         self.lot_size = LOT_SIZE
         self.ce_stoploss_per = CE_STOPLOSS_PERCENT
         self.pe_stoploss_per = PE_STOPLOSS_PERCENT
+        self.sl_slippage_buffer = SL_SLIPPAGE_BUFFER
+        self.sl_monitoring_interval = SL_MONITORING_INTERVAL
+        self.max_loss_multiplier = MAX_LOSS_MULTIPLIER
+        self.enable_sl_monitoring = ENABLE_SL_MONITORING
 
         # NSE Holidays
         self.nse_holidays = NSE_HOLIDAYS
@@ -82,6 +93,7 @@ class NiftyTradingBot:
         self.ce_sl_orderid = None
         self.pe_sl_orderid = None
         self.bn_exp_df = None
+        self.expiry_date = None
 
     def load_access_token(self):
         """Load access token from file"""
@@ -218,6 +230,130 @@ class NiftyTradingBot:
                     logger.error("Failed to get NIFTY LTP after maximum retries")
                     raise Exception("Unable to fetch NIFTY LTP after maximum retries")
 
+    def get_option_ltp(self, symbol, max_retries=5):
+        """Get current LTP for an option symbol"""
+        for attempt in range(max_retries):
+            try:
+                nfo_symbol = f'NFO:{symbol}'
+                option_data = self.kite.ltp([nfo_symbol])
+                ltp = option_data[nfo_symbol]['last_price']
+                return ltp
+            except Exception as e:
+                logger.warning(f"Attempt {attempt + 1}: Failed to get LTP for {symbol} - {str(e)}")
+                if attempt < max_retries - 1:
+                    time.sleep(0.5)
+                else:
+                    logger.error(f"Failed to get LTP for {symbol} after {max_retries} attempts")
+                    return None
+
+    def check_manual_exit_conditions(self, ce_ltp, pe_ltp):
+        """Check if manual exit is needed due to excessive loss beyond SL"""
+        try:
+            # Calculate current loss per option
+            ce_loss = max(0, ce_ltp - self.ce_sell_price)
+            pe_loss = max(0, pe_ltp - self.pe_sell_price)
+
+            # Calculate intended SL values
+            ce_intended_sl = self.ce_sell_price * self.ce_stoploss_per / 100
+            pe_intended_sl = self.pe_sell_price * self.pe_stoploss_per / 100
+
+            # Check if loss exceeds maximum allowed (for slippage protection)
+            ce_max_loss = ce_intended_sl * self.max_loss_multiplier
+            pe_max_loss = pe_intended_sl * self.max_loss_multiplier
+
+            ce_exit_needed = ce_loss > ce_max_loss
+            pe_exit_needed = pe_loss > pe_max_loss
+
+            if ce_exit_needed or pe_exit_needed:
+                logger.warning(f"EXCESSIVE LOSS DETECTED!")
+                logger.warning(f"CE - Current Loss: {ce_loss:.2f}, Max Allowed: {ce_max_loss:.2f}, Exit Needed: {ce_exit_needed}")
+                logger.warning(f"PE - Current Loss: {pe_loss:.2f}, Max Allowed: {pe_max_loss:.2f}, Exit Needed: {pe_exit_needed}")
+
+            return ce_exit_needed, pe_exit_needed
+
+        except Exception as e:
+            logger.error(f"Error in manual exit condition check: {str(e)}")
+            return False, False
+
+    def emergency_exit_position(self, option_type, symbol, quantity):
+        """Emergency market exit for a position"""
+        try:
+            logger.critical(f"EMERGENCY EXIT: Placing market buy order for {symbol}")
+            order_id = self.place_market_order_buy(symbol, quantity)
+            logger.critical(f"Emergency exit order placed: {order_id}")
+            return order_id
+        except Exception as e:
+            logger.critical(f"FAILED TO PLACE EMERGENCY EXIT for {symbol}: {str(e)}")
+            return None
+
+    def monitor_stop_loss_continuously(self):
+        """Continuous monitoring of positions for SL slippage protection"""
+        if not self.enable_sl_monitoring:
+            return
+
+        logger.info("Starting continuous stop loss monitoring...")
+
+        # Calculate target SL levels
+        ce_sl_level = self.ce_sell_price * (1 + self.ce_stoploss_per / 100)
+        pe_sl_level = self.pe_sell_price * (1 + self.pe_stoploss_per / 100)
+
+        quantity = self.lots * self.lot_size
+        ce_position_open = True
+        pe_position_open = True
+
+        while (ce_position_open or pe_position_open) and dt.datetime.now().time() < self.sqf_time:
+            try:
+                # Get current LTPs
+                ce_ltp = self.get_option_ltp(self.ce_symbol) if ce_position_open else None
+                pe_ltp = self.get_option_ltp(self.pe_symbol) if pe_position_open else None
+
+                if ce_ltp is None and ce_position_open:
+                    logger.error("Failed to get CE LTP - cannot monitor properly")
+                if pe_ltp is None and pe_position_open:
+                    logger.error("Failed to get PE LTP - cannot monitor properly")
+
+                # Check SL order status
+                if ce_position_open:
+                    ce_sl_status = self.get_order_status(self.ce_sl_orderid)
+                    if ce_sl_status == 'executed':
+                        logger.info("CE stop loss executed normally")
+                        ce_position_open = False
+
+                if pe_position_open:
+                    pe_sl_status = self.get_order_status(self.pe_sl_orderid)
+                    if pe_sl_status == 'executed':
+                        logger.info("PE stop loss executed normally")
+                        pe_position_open = False
+
+                # Check for manual exit conditions (slippage protection)
+                if ce_position_open and pe_position_open and ce_ltp and pe_ltp:
+                    ce_exit_needed, pe_exit_needed = self.check_manual_exit_conditions(ce_ltp, pe_ltp)
+
+                    if ce_exit_needed and ce_position_open:
+                        logger.critical("CE SLIPPAGE PROTECTION TRIGGERED")
+                        self.cancel_order(self.ce_sl_orderid)
+                        self.emergency_exit_position("CE", self.ce_symbol, quantity)
+                        ce_position_open = False
+
+                    if pe_exit_needed and pe_position_open:
+                        logger.critical("PE SLIPPAGE PROTECTION TRIGGERED")
+                        self.cancel_order(self.pe_sl_orderid)
+                        self.emergency_exit_position("PE", self.pe_symbol, quantity)
+                        pe_position_open = False
+
+                # Log current status periodically
+                if ce_position_open or pe_position_open:
+                    logger.info(f"Monitoring - CE LTP: {ce_ltp if ce_ltp else 'N/A'} (SL: {ce_sl_level:.2f}), "
+                                f"PE LTP: {pe_ltp if pe_ltp else 'N/A'} (SL: {pe_sl_level:.2f})")
+
+                time.sleep(self.sl_monitoring_interval)
+
+            except Exception as e:
+                logger.error(f"Error in continuous SL monitoring: {str(e)}")
+                time.sleep(1)
+
+        logger.info("Stop loss monitoring completed")
+
     def place_market_order_sell(self, symbol, quantity):
         """Place market sell order"""
         try:
@@ -255,19 +391,23 @@ class NiftyTradingBot:
             raise
 
     def place_stoploss_order_buy(self, symbol, quantity, trigger_price):
-        """Place stop loss buy order"""
+        """Place stop loss buy order using Limit order with slippage protection"""
         try:
+            # Add slippage buffer to limit price to ensure execution even with gaps
+            limit_price = self.round_to_tick_size(trigger_price + self.sl_slippage_buffer)
+
             order_id = self.kite.place_order(
                 tradingsymbol=symbol,
                 exchange=self.kite.EXCHANGE_NFO,
                 transaction_type=self.kite.TRANSACTION_TYPE_BUY,
                 quantity=quantity,
-                order_type=self.kite.ORDER_TYPE_SLM,
+                order_type=self.kite.ORDER_TYPE_SL,  # Use SL instead of SLM
                 product=self.kite.PRODUCT_MIS,
                 variety=self.kite.VARIETY_REGULAR,
-                trigger_price=trigger_price
+                trigger_price=trigger_price,
+                price=limit_price  # Add limit price for SL order
             )
-            logger.info(f"Stop loss buy order placed for {symbol} at {trigger_price}: {order_id}")
+            logger.info(f"Stop loss buy order placed for {symbol} - Trigger: {trigger_price}, Limit: {limit_price}, Order ID: {order_id}")
             return order_id
         except Exception as e:
             logger.error(f"Error placing stop loss order for {symbol}: {str(e)}")
@@ -303,7 +443,6 @@ class NiftyTradingBot:
                 else:
                     status = 'pending'
 
-                logger.info(f"Order {order_id} status: {status}")
                 return status
             except Exception as e:
                 logger.warning(f"Attempt {attempt + 1}: Can't extract order status - {str(e)}")
@@ -459,6 +598,14 @@ class NiftyTradingBot:
             # Place initial straddle
             logger.info("Placing initial straddle orders")
             self.calculate_atm_and_place_order()
+
+            # Start continuous stop loss monitoring if enabled
+            if self.enable_sl_monitoring:
+                logger.info("Starting continuous stop loss monitoring")
+                # Run monitoring in background - this will handle slippage protection
+                monitor_thread = threading.Thread(target=self.monitor_stop_loss_continuously)
+                monitor_thread.daemon = True
+                monitor_thread.start()
 
             # Wait until re-entry time to check for adjustments
             self.wait_until_time(self.re_entry_time)
