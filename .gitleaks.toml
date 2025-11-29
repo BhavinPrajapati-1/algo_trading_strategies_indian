@@ -1,0 +1,35 @@
+# Gitleaks Configuration
+# =======================
+# Configuration for gitleaks secret scanning
+# This file helps reduce false positives
+
+[allowlist]
+description = "Allowlist for false positives"
+
+# Ignore example files and documentation
+paths = [
+    '''\.env\.example$''',
+    '''.*\.md$''',
+    '''.*README.*''',
+    '''.*MIGRATION.*''',
+    '''.*AUTHENTICATION.*''',
+]
+
+# Ignore patterns that are examples or placeholders
+regexes = [
+    '''api_key.*=.*["']your_''',
+    '''api_secret.*=.*["']your_''',
+    '''access_token.*=.*["']your_''',
+    '''os\.getenv''',
+    '''get_env_variable''',
+    '''ZERODHA_API_KEY''',
+    '''ZERODHA_API_SECRET''',
+    '''example''',
+    '''placeholder''',
+]
+
+# Ignore commits that are known migrations
+commits = []
+
+# Additional stopwords
+stopwords = []
