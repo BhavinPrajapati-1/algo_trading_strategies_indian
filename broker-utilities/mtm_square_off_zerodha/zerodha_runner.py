@@ -76,6 +76,7 @@ class EnhancedZerodhaTradingSystemRunner:
             'ltp_script': os.path.exists('zerodha_ltp_subscriber.py'),
             'mtm_script': os.path.exists('zerodha_mtm_monitor.py'),
             'access_token': os.path.exists('/home/ubuntu/utilities/kite_connect_data/tickjournal/key_files/access_token.txt'),
+            # 'access_token': os.path.exists('./config/access_token.txt'),
             'python_packages': True,
             'ltp_database_writable': True,
             'mtm_database_writable': True,
@@ -85,8 +86,9 @@ class EnhancedZerodhaTradingSystemRunner:
         # Check access token
         if checks['access_token']:
             try:
-                with open('/home/ubuntu/utilities/kite_connect_data/tickjournal/key_files/access_token.txt', 'r') as f:
-                    token = f.read().strip()
+                token = os.getenv('ZERODHA_ACCESS_TOKEN', "")
+                if not token:
+                    token = open('./config/access_token.txt','r').read().strip()
                     if not token:
                         checks['access_token'] = False
             except Exception:

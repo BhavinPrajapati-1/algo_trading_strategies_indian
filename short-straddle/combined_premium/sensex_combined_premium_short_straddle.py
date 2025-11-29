@@ -4,11 +4,11 @@ import time
 import pandas as pd
 
 # Your Zerodha Kite Connect API key, unique to your account, used for authentication.
-api_key = ''
+api_key = os.getenv('ZERODHA_API_KEY', "")
 
-# Access token read from a file. This token is used to authenticate your session with the Kite Connect API.
-# It's typically obtained after a successful login and has a limited validity period.
-access_token_zer = open("/home/ubuntu/utilities/", 'r').read()
+access_token_zer = os.getenv('ZERODHA_ACCESS_TOKEN', "")  # Empty string if not set
+if not access_token_zer:
+    access_token_zer = open("./config/access_token.txt", 'r').read().strip()
 
 # Initialize the KiteConnect object with your API key.
 kite = KiteConnect(api_key=api_key)
