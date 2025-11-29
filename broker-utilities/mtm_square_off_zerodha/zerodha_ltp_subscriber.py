@@ -18,10 +18,15 @@ import struct
 import logging
 import yaml
 import json
+import os
 from threading import Thread, Lock
 from kiteconnect import KiteConnect, KiteTicker
 from typing import Dict, List, Optional
 from datetime import datetime
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 
 class EnhancedZerodhaLTPSubscriber:
@@ -69,8 +74,12 @@ class EnhancedZerodhaLTPSubscriber:
                 self.config = yaml.safe_load(file)
 
             # Extract API credentials
-            self.api_key = self.config['zerodha']['api_key']
-            self.api_secret = self.config['zerodha']['api_secret']
+            # Priority: Environment variables > Config file
+            self.api_key = os.getenv('ZERODHA_API_KEY') or self.config['zerodha']['api_key']
+            self.api_secret = os.getenv('ZERODHA_API_SECRET') or self.config['zerodha']['api_secret']
+
+            if not self.api_key or not self.api_secret:
+                raise ValueError("API credentials not found in environment variables or config file")
 
             self.logger.info("Configuration loaded successfully")
 
@@ -83,10 +92,26 @@ class EnhancedZerodhaLTPSubscriber:
         try:
             self.kite = KiteConnect(api_key=self.api_key)
 
-            # Load access token from file
-            access_token_path = "/home/ubuntu/utilities/kite_connect_data/tickjournal/key_files/access_token.txt"
-            with open(access_token_path, 'r') as f:
-                access_token = f.read().strip()
+            # Load access token from environment variable or file
+            # Priority: Environment variable > Config file > Default path
+            access_token = os.getenv('ZERODHA_ACCESS_TOKEN')
+
+            if not access_token:
+                # Try to load from file
+                access_token_path = os.getenv('ACCESS_TOKEN_FILE',
+                                             "/home/ubuntu/utilities/kite_connect_data/tickjournal/key_files/access_token.txt")
+                try:
+                    with open(access_token_path, 'r') as f:
+                        access_token = f.read().strip()
+                    self.logger.info(f"Access token loaded from file: {access_token_path}")
+                except FileNotFoundError:
+                    self.logger.error(f"Access token file not found: {access_token_path}")
+                    raise ValueError("Access token not found in environment or file")
+            else:
+                self.logger.info("Access token loaded from environment variable")
+
+            if not access_token:
+                raise ValueError("Access token is empty or invalid")
 
             self.kite.set_access_token(access_token)
 

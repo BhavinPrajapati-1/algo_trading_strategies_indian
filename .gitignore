@@ -1,0 +1,93 @@
+# Environment Variables
+.env
+.env.local
+.env.*.local
+
+# Sensitive Credential Files
+access_token.txt
+**/access_token.txt
+config/access_token.txt
+enctoken.txt
+**/enctoken.txt
+
+# API Keys and Secrets
+api_key.txt
+api_secret.txt
+credentials.json
+**/credentials.json
+
+# Database Files
+*.db
+*.sqlite
+*.sqlite3
+zerodha_trading.db
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environment
+venv/
+ENV/
+env/
+.venv
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+*.log
+logs/
+mtm_monitor.log
+ltp_subscriber.log
+runner.log
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Data Files (Optional - comment out if you want to track these)
+*.csv
+*.pkl
+*.pickle
+instruments.pkl
+config/instruments.pkl
+
+# Backup Files
+*.bak
+*.backup
+*.old
+
+# OS Files
+Thumbs.db
+.DS_Store
+
+# Temporary Files
+tmp/
+temp/
+*.tmp
