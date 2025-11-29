@@ -41,7 +41,6 @@ class KiteHistoricalDataDownloader:
         }
 
     def _setup_credentials(self):
-        # breakpoint()
         """Setup API credentials - UPDATE THESE WITH YOUR ACTUAL CREDENTIALS"""
         self.api_key = os.getenv('ZERODHA_API_KEY', "")  # Empty string if not set
         self.api_secret = os.getenv('ZERODHA_API_SECRET', "")  # Empty string if not set
@@ -161,7 +160,6 @@ class KiteHistoricalDataDownloader:
         """Test Kite API connection by fetching profile"""
         try:
             self.logger.info("Testing Kite API connection...")
-            breakpoint()
             profile = self.kite.profile()
             user_name = profile.get('user_name', 'Unknown')
             user_id = profile.get('user_id', 'Unknown')
@@ -171,13 +169,11 @@ class KiteHistoricalDataDownloader:
             self.logger.info(f"  Broker: {broker}")
             return True
         except Exception as e:
-            breakpoint()
             self.logger.error(f"✗ Access token validation failed: {e}")
             self.logger.error("Please ensure your access token is valid and not expired")
             return False
 
     def authenticate_kite(self):
-        # breakpoint()
         """Authenticate with Kite Connect API using access token from file"""
         try:
             self.logger.info("Starting Kite Connect authentication...")
