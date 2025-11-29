@@ -41,7 +41,7 @@ if not api_key or not api_secret:
     print("   See AUTHENTICATION.md for setup instructions")
 
 if not access_token:
-    access_token=open('./config/access_token.txt','r').read()
+    access_token = open('./config/access_token.txt','r').read().strip()
 
 open_time=dt.time(hour=9,minute=15)
 trade_entry_time=dt.time(hour=9,minute=20)
