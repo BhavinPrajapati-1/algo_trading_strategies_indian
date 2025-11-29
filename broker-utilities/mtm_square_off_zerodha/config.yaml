@@ -2,8 +2,11 @@
 # File: config.yaml
 
 zerodha:
-  api_key: ""
-  api_secret: ""
+  # Credentials are now loaded from .env file (preferred method)
+  # You can still set them here as fallback, but .env takes priority
+  # Set ZERODHA_API_KEY, ZERODHA_API_SECRET, ZERODHA_ACCESS_TOKEN in .env
+  api_key: ""  # Optional: fallback if .env not found
+  api_secret: ""  # Optional: fallback if .env not found
 
 trading:
   # MTM loss threshold in rupees (negative value for loss)
