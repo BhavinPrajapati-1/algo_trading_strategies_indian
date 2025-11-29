@@ -31,8 +31,7 @@ python-dotenv>=0.19.0
 # ==========================================
 # Utility Libraries
 # ==========================================
-concurrent-futures>=3.1.1; python_version < '3.2'
-# Note: concurrent.futures is built-in for Python 3.2+
+# Note: concurrent.futures is built-in for Python 3.2+ (no external package needed)
 PyYAML>=6.0
 Flask>=2.0.0
 
@@ -53,5 +52,5 @@ Flask>=2.0.0
 # ==========================================
 # System Requirements
 # ==========================================
-# Python >= 3.6
-# PostgreSQL >= 10.0
+# Python >= 3.8 (recommended: 3.10 or 3.11)
+# PostgreSQL >= 10.0 (optional, for historical data storage)
