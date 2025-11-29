@@ -98,8 +98,7 @@ class EnhancedZerodhaLTPSubscriber:
 
             if not access_token:
                 # Try to load from file
-                access_token_path = os.getenv('ACCESS_TOKEN_FILE',
-                                             "./config/access_token.txt")
+                access_token_path = os.getenv('ACCESS_TOKEN_FILE', "./config/access_token.txt")
                 try:
                     with open(access_token_path, 'r') as f:
                         access_token = f.read().strip()

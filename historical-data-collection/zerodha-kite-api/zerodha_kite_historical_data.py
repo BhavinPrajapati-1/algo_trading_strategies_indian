@@ -10,7 +10,7 @@ from kiteconnect import KiteConnect
 from psycopg2.extras import execute_values
 import logging
 from pathlib import Path
-
+from dotenv import load_dotenv
 
 class KiteHistoricalDataDownloader:
     """
@@ -18,7 +18,9 @@ class KiteHistoricalDataDownloader:
     using backward pagination strategy for better API management
     """
 
+    
     def __init__(self):
+        load_dotenv()
         """Initialize the downloader with credentials and database configuration"""
         self._setup_credentials()
         self._setup_database_config()
@@ -39,9 +41,11 @@ class KiteHistoricalDataDownloader:
         }
 
     def _setup_credentials(self):
+        # breakpoint()
         """Setup API credentials - UPDATE THESE WITH YOUR ACTUAL CREDENTIALS"""
-        self.api_key = "your_kite_api_key_here"
-        self.api_secret = "your_kite_api_secret_here"
+        self.api_key = os.getenv('ZERODHA_API_KEY', "")  # Empty string if not set
+        self.api_secret = os.getenv('ZERODHA_API_SECRET', "")  # Empty string if not set
+        self.access_token_file = os.getenv('ACCESS_TOKEN_FILE', "./config/access_token.txt")  # Empty string if not set
 
     def _setup_database_config(self):
         """Setup database configuration - UPDATE THESE WITH YOUR DATABASE DETAILS"""
@@ -56,7 +60,7 @@ class KiteHistoricalDataDownloader:
     def _setup_file_paths(self):
         """Setup file paths using Path for better cross-platform compatibility"""
         self.base_path = Path('./kite_connect_data')
-        self.access_token_file = self.base_path / 'key_files' / 'access_token.txt'
+        self.access_token_file = Path(os.getenv('ACCESS_TOKEN_FILE', "./config/access_token.txt"))
         self.instruments_file = Path('instruments.csv')
 
         # Create directories if they don't exist
@@ -138,7 +142,7 @@ class KiteHistoricalDataDownloader:
             if not self.access_token_file.exists():
                 self.logger.error(f"Access token file not found: {self.access_token_file}")
                 self.logger.error("Please create the access token file with your Kite Connect access token")
-                self.logger.error("Example: echo 'your_access_token_here' > key_files/access_token.txt")
+                self.logger.error("Example: echo 'your_access_token_here' > config/access_token.txt")
                 return None
 
             with open(self.access_token_file, 'r', encoding='utf-8') as file:
@@ -157,6 +161,7 @@ class KiteHistoricalDataDownloader:
         """Test Kite API connection by fetching profile"""
         try:
             self.logger.info("Testing Kite API connection...")
+            breakpoint()
             profile = self.kite.profile()
             user_name = profile.get('user_name', 'Unknown')
             user_id = profile.get('user_id', 'Unknown')
@@ -166,16 +171,18 @@ class KiteHistoricalDataDownloader:
             self.logger.info(f"  Broker: {broker}")
             return True
         except Exception as e:
+            breakpoint()
             self.logger.error(f"✗ Access token validation failed: {e}")
             self.logger.error("Please ensure your access token is valid and not expired")
             return False
 
     def authenticate_kite(self):
+        # breakpoint()
         """Authenticate with Kite Connect API using access token from file"""
         try:
             self.logger.info("Starting Kite Connect authentication...")
-
-            access_token = self._read_access_token()
+            access_token = os.getenv("ZERODHA_ACCESS_TOKEN", "")
+            # access_token = self._read_access_token()
             if not access_token:
                 self.logger.error("Please ensure the access token file exists and contains a valid token")
                 return False
@@ -183,7 +190,6 @@ class KiteHistoricalDataDownloader:
             self.logger.info("Initializing KiteConnect client...")
             self.kite = KiteConnect(api_key=self.api_key)
             self.kite.set_access_token(access_token)
-
             return self._test_kite_connection()
 
         except Exception as e:
@@ -808,6 +814,7 @@ class KiteHistoricalDataDownloader:
             self.logger.info(f"🚀 Starting Kite Historical Data Downloader - {mode_info}")
             self.logger.info(f"📊 Backward Pagination: {self.PAGINATION_CONFIG['days_per_batch']} days per batch")
 
+
             if test_symbols:
                 self.logger.info(f"🧪 Test symbols: {test_symbols}")
 
@@ -851,7 +858,7 @@ def main():
     # ============================================
 
     # For testing with specific symbols (set to True)
-    TEST_MODE = False
+    TEST_MODE = True
 
     # Custom test symbols (leave None to use default RELIANCE, HDFCBANK)
     CUSTOM_TEST_SYMBOLS = ['RELIANCE', 'HDFCBANK']  # or None for default

@@ -22,9 +22,6 @@ api_key = os.getenv('ZERODHA_API_KEY', "")  # Empty string if not set
 api_secret = os.getenv('ZERODHA_API_SECRET', "")  # Empty string if not set
 access_token = os.getenv('ZERODHA_ACCESS_TOKEN', "")  # Empty string if not set
 
-if not access_token:
-    access_token = open('./config/access_token.txt', 'r').read()
-
 open_time = dt.time(hour=9, minute=15)
 trade_entry_time = dt.time(hour=9, minute=20)
 re_entry_time = dt.time(hour=12, minute=30)
