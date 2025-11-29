@@ -35,6 +35,20 @@ ENABLE_SL_MONITORING = True  # Enable continuous SL monitoring
 api_key = os.getenv('ZERODHA_API_KEY', "")  # Empty string if not set
 api_secret = os.getenv('ZERODHA_API_SECRET', "")  # Empty string if not set
 access_token = os.getenv('ZERODHA_ACCESS_TOKEN', "")  # Empty string if not set
+
+# Validate credentials are loaded
+if not api_key or not api_secret or not access_token:
+    print("⚠️  ERROR: Credentials not found in environment variables")
+    print("Please ensure your .env file contains:")
+    print("  - ZERODHA_API_KEY")
+    print("  - ZERODHA_API_SECRET")
+    print("  - ZERODHA_ACCESS_TOKEN")
+    print("")
+    print("Run: python zerodha_manual_auth.py to authenticate")
+    print("See AUTHENTICATION.md for setup instructions")
+    import sys
+    sys.exit(1)
+
 ACCESS_TOKEN_FILE = "./config/access_token.txt"  # Path to access token file
 access_token = os.getenv('ZERODHA_ACCESS_TOKEN', "")  # Empty string if not set
 
