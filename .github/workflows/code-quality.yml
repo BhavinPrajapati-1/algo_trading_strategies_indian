@@ -1,0 +1,134 @@
+name: Code Quality
+
+on:
+  push:
+    branches: [ main, master, develop, claude/** ]
+  pull_request:
+    branches: [ main, master, develop ]
+
+jobs:
+  lint:
+    name: Linting (Black, Flake8, Pylint)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install black flake8 pylint isort
+          # Install project dependencies (needed for pylint)
+          pip install -r requirements.txt || true
+
+      - name: Check code formatting with Black
+        run: |
+          echo "::group::Black Formatting Check"
+          black --check --diff --color .
+          echo "::endgroup::"
+        continue-on-error: true
+
+      - name: Lint with Flake8
+        run: |
+          echo "::group::Flake8 Linting"
+          # Stop the build if there are Python syntax errors or undefined names
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+          # Exit-zero treats all errors as warnings
+          flake8 . --count --exit-zero --max-complexity=10 --max-line-length=120 --statistics \
+            --exclude=venv,env,.venv,.git,__pycache__,.pytest_cache,.eggs,*.egg
+          echo "::endgroup::"
+
+      - name: Check import sorting with isort
+        run: |
+          echo "::group::Import Sorting Check"
+          isort --check-only --diff .
+          echo "::endgroup::"
+        continue-on-error: true
+
+      - name: Lint with Pylint
+        run: |
+          echo "::group::Pylint Analysis"
+          # Run pylint on all Python files, but don't fail the build
+          find . -name "*.py" -not -path "./venv/*" -not -path "./.venv/*" -not -path "./env/*" | \
+            xargs pylint --exit-zero --max-line-length=120 \
+            --disable=C0103,C0114,C0115,C0116,W0105,R0913,R0914,R0915 \
+            --output-format=colorized || true
+          echo "::endgroup::"
+        continue-on-error: true
+
+  type-check:
+    name: Type Checking (mypy)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install mypy types-requests types-PyYAML
+          pip install -r requirements.txt || true
+
+      - name: Type check with mypy
+        run: |
+          echo "::group::MyPy Type Checking"
+          # Run mypy but don't fail build (informational only)
+          mypy --ignore-missing-imports --no-strict-optional . || true
+          echo "::endgroup::"
+        continue-on-error: true
+
+  code-complexity:
+    name: Code Complexity Analysis
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install radon
+        run: pip install radon
+
+      - name: Analyze code complexity
+        run: |
+          echo "::group::Cyclomatic Complexity"
+          radon cc . -a -nb --exclude=venv,env,.venv
+          echo "::endgroup::"
+
+          echo "::group::Maintainability Index"
+          radon mi . -nb --exclude=venv,env,.venv
+          echo "::endgroup::"
+        continue-on-error: true
+
+  summary:
+    name: Code Quality Summary
+    runs-on: ubuntu-latest
+    needs: [lint, type-check, code-complexity]
+    if: always()
+
+    steps:
+      - name: Summary
+        run: |
+          echo "### Code Quality Check Complete"
+          echo ""
+          echo "Please review the logs above for any issues."
+          echo ""
+          echo "Note: Some checks are informational and won't fail the build."

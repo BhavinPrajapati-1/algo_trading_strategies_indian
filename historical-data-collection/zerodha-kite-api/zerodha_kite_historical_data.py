@@ -178,9 +178,17 @@ class KiteHistoricalDataDownloader:
         try:
             self.logger.info("Starting Kite Connect authentication...")
             access_token = os.getenv("ZERODHA_ACCESS_TOKEN", "")
-            # access_token = self._read_access_token()
-            if not access_token:
-                self.logger.error("Please ensure the access token file exists and contains a valid token")
+
+            # Validate all credentials are loaded
+            if not self.api_key or not self.api_secret or not access_token:
+                self.logger.error("⚠️  ERROR: Credentials not found in environment variables")
+                self.logger.error("Please ensure your .env file contains:")
+                self.logger.error("  - ZERODHA_API_KEY")
+                self.logger.error("  - ZERODHA_API_SECRET")
+                self.logger.error("  - ZERODHA_ACCESS_TOKEN")
+                self.logger.error("")
+                self.logger.error("Run: python zerodha_manual_auth.py to authenticate")
+                self.logger.error("See AUTHENTICATION.md for setup instructions")
                 return False
 
             self.logger.info("Initializing KiteConnect client...")

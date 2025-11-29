@@ -1,0 +1,117 @@
+# Development Dependencies for Algo Trading Strategies
+# ======================================================
+# These packages are used for development, testing, and code quality
+# but are not required to run the trading strategies.
+#
+# Install with: pip install -r requirements-dev.txt
+
+# Include production dependencies
+-r requirements.txt
+
+# ==============================================
+# Code Quality and Linting
+# ==============================================
+black>=23.0.0              # Code formatter
+flake8>=6.0.0              # Linting tool
+pylint>=3.0.0              # Advanced linting
+isort>=5.12.0              # Import sorting
+mypy>=1.5.0                # Static type checking
+autopep8>=2.0.0            # Auto-formatting
+
+# Flake8 plugins
+flake8-docstrings>=1.7.0   # Docstring linting
+flake8-bugbear>=23.0.0     # Additional bug detection
+flake8-comprehensions>=3.14.0  # Better comprehension checks
+
+# ==============================================
+# Code Analysis
+# ==============================================
+radon>=6.0.0               # Code complexity metrics
+mccabe>=0.7.0              # Complexity checker
+vulture>=2.9.0             # Dead code detection
+bandit>=1.7.0              # Security issue detection
+
+# ==============================================
+# Testing
+# ==============================================
+pytest>=7.4.0              # Testing framework
+pytest-cov>=4.1.0          # Coverage plugin
+pytest-mock>=3.11.0        # Mocking plugin
+pytest-asyncio>=0.21.0     # Async testing
+coverage>=7.3.0            # Code coverage
+hypothesis>=6.82.0         # Property-based testing
+
+# ==============================================
+# Type Checking
+# ==============================================
+types-requests>=2.31.0     # Type stubs for requests
+types-PyYAML>=6.0.0        # Type stubs for PyYAML
+types-python-dateutil>=2.8.0  # Type stubs for dateutil
+
+# ==============================================
+# Security Scanning
+# ==============================================
+safety>=2.3.0              # Dependency vulnerability scanner
+pip-audit>=2.6.0           # Alternative dependency scanner
+detect-secrets>=1.4.0      # Secret detection
+
+# ==============================================
+# Documentation
+# ==============================================
+sphinx>=7.2.0              # Documentation generator
+sphinx-rtd-theme>=1.3.0    # Read the Docs theme
+sphinx-autodoc-typehints>=1.24.0  # Type hint support
+myst-parser>=2.0.0         # Markdown support for Sphinx
+
+# ==============================================
+# Development Tools
+# ==============================================
+ipython>=8.15.0            # Enhanced Python shell
+jupyter>=1.0.0             # Jupyter notebooks
+notebook>=7.0.0            # Jupyter notebook server
+ipdb>=0.13.0               # IPython debugger
+pre-commit>=3.4.0          # Git hooks framework
+
+# ==============================================
+# Dependency Management
+# ==============================================
+pip-tools>=7.3.0           # Requirements management
+pipdeptree>=2.13.0         # Dependency tree viewer
+pip-licenses>=4.3.0        # License checker
+
+# ==============================================
+# Performance Profiling
+# ==============================================
+line-profiler>=4.1.0       # Line-by-line profiler
+memory-profiler>=0.61.0    # Memory usage profiler
+py-spy>=0.3.0              # Sampling profiler
+
+# ==============================================
+# Build and Packaging
+# ==============================================
+build>=1.0.0               # PEP 517 build frontend
+twine>=4.0.0               # Package upload tool (if needed)
+wheel>=0.41.0              # Wheel format support
+setuptools>=68.2.0         # Package setup
+
+# ==============================================
+# Version Control
+# ==============================================
+gitpython>=3.1.0           # Git interface
+python-semantic-release>=8.0.0  # Automated versioning
+
+# ==============================================
+# Misc Tools
+# ==============================================
+python-dotenv>=1.0.0       # Already in main requirements
+colorama>=0.4.6            # Colored terminal output
+tqdm>=4.66.0               # Progress bars
+rich>=13.5.0               # Rich text and formatting
+tabulate>=0.9.0            # Pretty-print tables
+
+# ==============================================
+# Optional: Advanced Analytics
+# ==============================================
+# matplotlib>=3.8.0        # Plotting (uncomment if needed)
+# seaborn>=0.12.0          # Statistical plotting
+# plotly>=5.17.0           # Interactive plots
