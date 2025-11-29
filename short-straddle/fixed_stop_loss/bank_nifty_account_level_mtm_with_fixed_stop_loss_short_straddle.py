@@ -1,10 +1,14 @@
 #accout level sl, re attemt on exe range cancellation, telegram integration
 #modified on 23/08/2021 17:15 IST
+import os
 from kiteconnect import KiteConnect
 import pandas as pd
 import datetime as dt
 import time
 import requests
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 lots=10  # no of lots
@@ -16,8 +20,12 @@ u_exit='no'
 nse_holidays=[dt.date(2021,7,21),dt.date(2021,8,19),dt.date(2021,9,10),dt.date(2021,10,15),dt.date(2021,11,4),dt.date(2021,11,5),dt.date(2021,11,19)]
 
 
-api_key = ""
-api_secret = ""
+api_key = os.getenv('ZERODHA_API_KEY', "")  # Empty string if not set
+api_secret = os.getenv('ZERODHA_API_SECRET', "")  # Empty string if not set
+access_token = os.getenv('ZERODHA_ACCESS_TOKEN', "")  # Empty string if not set
+
+if not access_token:
+    access_token = open('./config/access_token.txt', 'r').read()
 
 access_token=open('/home/ec2-user/keyfiles/','r').read()
 

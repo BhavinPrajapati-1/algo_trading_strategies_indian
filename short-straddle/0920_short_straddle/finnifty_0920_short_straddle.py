@@ -1,9 +1,12 @@
 #  FIN NIFTY 0920 Short straddle, % based SL
-
+import os
 from kiteconnect import KiteConnect
 import pandas as pd
 import datetime as dt
 import time
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 lots=1  # quanity
@@ -14,10 +17,17 @@ pe_stoploss_per=25
 nse_holidays=[dt.date(2023,7,21),dt.date(2023,8,19),dt.date(2023,9,10),dt.date(2023,10,15),dt.date(2023,11,4),dt.date(2023,11,5),dt.date(2023,11,19)]
 
 
-api_key = ""
-api_secret = ""
+# Try environment first, fallback to hardcoded (backward compatible)
+api_key = os.getenv('ZERODHA_API_KEY', "")  # Empty string if not set
+api_secret = os.getenv('ZERODHA_API_SECRET', "")  # Empty string if not set
+access_token = os.getenv('ZERODHA_ACCESS_TOKEN', "")  # Empty string if not set
 
-access_token=open('C:/downloads/access_token.txt','r').read()
+if not api_key or not api_secret:
+    print("⚠️  WARNING: Using hardcoded credentials. Please set ZERODHA_API_KEY and ZERODHA_API_SECRET in .env file")
+    print("   See AUTHENTICATION.md for setup instructions")
+
+if not access_token:
+    access_token=open('./config/access_token.txt','r').read()
 
 open_time=dt.time(hour=9,minute=15)
 trade_entry_time=dt.time(hour=9,minute=20)

@@ -4,6 +4,11 @@ from kiteconnect import KiteConnect
 import pandas as pd
 import datetime as dt
 import time
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 lots = 1  # quantity
 ce_stoploss_per = 25
@@ -12,10 +17,13 @@ pe_stoploss_per = 25
 nse_holidays = [dt.date(2025, 1, 26), dt.date(2025, 3, 14), dt.date(2025, 3, 31), dt.date(2025, 4, 14), dt.date(2025, 4, 18), dt.date(2025, 5, 1), dt.date(2025, 8, 15), dt.date(2025, 10, 2), dt.date(2025, 10, 31),
                 dt.date(2025, 11, 5)]
 
-api_key = ""
-api_secret = ""
+# Try environment first, fallback to hardcoded (backward compatible)
+api_key = os.getenv('ZERODHA_API_KEY', "")  # Empty string if not set
+api_secret = os.getenv('ZERODHA_API_SECRET', "")  # Empty string if not set
+access_token = os.getenv('ZERODHA_ACCESS_TOKEN', "")  # Empty string if not set
 
-access_token = open('C:/downloads/access_token.txt', 'r').read()
+if not access_token:
+    access_token = open('./config/access_token.txt', 'r').read()
 
 open_time = dt.time(hour=9, minute=15)
 trade_entry_time = dt.time(hour=9, minute=20)
