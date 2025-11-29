@@ -854,7 +854,7 @@ def main():
     # ============================================
 
     # For testing with specific symbols (set to True)
-    TEST_MODE = True
+    TEST_MODE = False
 
     # Custom test symbols (leave None to use default RELIANCE, HDFCBANK)
     CUSTOM_TEST_SYMBOLS = ['RELIANCE', 'HDFCBANK']  # or None for default
