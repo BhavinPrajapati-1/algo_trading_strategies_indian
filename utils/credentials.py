@@ -132,7 +132,6 @@ def get_shoonya_credentials():
         'imei': os.getenv('SHOONYA_IMEI')
     }
 
-
 # Backward compatibility function for legacy scripts
 def load_credentials_from_file(file_path):
     """
