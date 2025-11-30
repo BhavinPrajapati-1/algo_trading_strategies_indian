@@ -1,0 +1,76 @@
+# Multi-Broker Configuration Example
+# Copy this file to brokers.yaml and fill in your credentials
+# WARNING: Never commit brokers.yaml with real credentials to git!
+
+brokers:
+  zerodha:
+    api_key: "your_zerodha_api_key"
+    api_secret: "your_zerodha_api_secret"
+    access_token: null  # Will be generated after login
+    user_id: null
+    totp_secret: null  # For 2FA (optional)
+    timeout: 7
+
+  upstox:
+    api_key: "your_upstox_api_key"
+    api_secret: "your_upstox_api_secret"
+    access_token: null
+    user_id: null
+    password: null
+    pin: null
+    api_endpoint: null  # Optional custom endpoint
+    timeout: 7
+
+  kotak:
+    api_key: "your_kotak_consumer_key"
+    api_secret: "your_kotak_consumer_secret"
+    access_token: null
+    user_id: null
+    mobile_number: "9876543210"
+    password: "your_password"
+    pin: null  # MPIN for 2FA
+    timeout: 7
+
+  angelone:
+    api_key: "your_angelone_api_key"
+    api_secret: "your_angelone_client_code"
+    access_token: null
+    user_id: "your_client_code"
+    password: "your_password"
+    totp_secret: null
+    timeout: 7
+
+  fyers:
+    api_key: "your_fyers_app_id"
+    api_secret: "your_fyers_secret_id"
+    access_token: null
+    user_id: "your_fyers_id"
+    timeout: 7
+
+  aliceblue:
+    api_key: "your_aliceblue_user_id"
+    api_secret: "your_aliceblue_api_key"
+    access_token: null
+    user_id: "your_user_id"
+    timeout: 7
+
+# Default broker to use (if not specified in code)
+default_broker: "zerodha"
+
+# Global settings
+settings:
+  # Auto-save access tokens
+  save_tokens: true
+  token_file: "config/.tokens.json"
+
+  # Logging
+  log_level: "INFO"
+  log_file: "logs/broker.log"
+
+  # Retry settings
+  max_retries: 3
+  retry_delay: 1  # seconds
+
+  # Order settings
+  default_product_type: "MIS"  # MIS/CNC/NRML
+  default_validity: "DAY"  # DAY/IOC
