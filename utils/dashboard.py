@@ -7,7 +7,7 @@ Uses Flask for web server and matplotlib/plotly for charts.
 Author: Trading Analytics Team
 """
 
-from flask import Flask, render_template, jsonify, request
+from flask import Flask, render_template, jsonify, render_template_string, request
 import json
 from pathlib import Path
 from datetime import datetime, timedelta
