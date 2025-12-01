@@ -7,6 +7,7 @@
 access_token.txt
 **/access_token.txt
 config/access_token.txt
+config/.tokens.json
 config/brokers.yaml
 enctoken.txt
 **/enctoken.txt
