@@ -61,6 +61,22 @@ jinja2>=3.0.0              # HTML template engine
 
 # Data Analysis (Optional)
 # sqlalchemy>=1.4.0        # SQL toolkit (if using advanced DB features)
+# These are needed for advanced analytics features:
+# - Report generation (HTML/PDF reports)
+# - Performance attribution analysis
+# - Backtesting framework
+# - Strategy comparison and visualization
+# - Trading dashboards
+
+# Visualization
+matplotlib>=3.5.0          # For charts and graphs
+plotly>=5.0.0              # For interactive visualizations
+
+# Templating (for HTML reports)
+jinja2>=3.0.0              # HTML template engine
+
+# Data Analysis (Optional)
+# sqlalchemy>=1.4.0        # SQL toolkit (if using advanced DB features)
 
 # ==========================================
 # Development and Testing (Optional)

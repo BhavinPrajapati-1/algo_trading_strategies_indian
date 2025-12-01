@@ -30,6 +30,9 @@ from kiteconnect import KiteConnect
 import pyotp
 import logging
 from werkzeug.serving import make_server
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # ================================================================================================
 # USER CONFIGURATION SECTION - MODIFY THESE VALUES AS NEEDED
@@ -40,18 +43,18 @@ SERVER_HOST = "127.0.0.1"
 SERVER_PORT = 8000
 
 # Zerodha Kite Connect Credentials (REQUIRED - Update with your credentials)
-USER_ID = "YOUR_USER_ID"  # Your Zerodha User ID
-PASSWORD = "YOUR_PASSWORD"  # Your Zerodha Password
-TOTP_KEY = "YOUR_TOTP_SECRET_KEY"  # Your TOTP Secret Key from Zerodha
-API_KEY = "YOUR_API_KEY"  # Your Kite Connect API Key
-API_SECRET = "YOUR_API_SECRET"  # Your Kite Connect API Secret
+USER_ID = os.getenv("ZERODHA_USER_ID")  # Your Zerodha User ID
+PASSWORD = os.getenv("ZERODHA_PASSWORD")  # Your Zerodha Password
+TOTP_KEY = os.getenv("ZERODHA_TOTP_KEY")  # Your TOTP Secret Key from Zerodha
+API_KEY = os.getenv("ZERODHA_API_KEY")  # Your Kite Connect API Key
+API_SECRET = os.getenv("ZERODHA_API_SECRET")  # Your Kite Connect API Secret
 
 # Telegram Notification Settings (REQUIRED - Update with your bot details)
-TELEGRAM_BOT_TOKEN = 'YOUR_TELEGRAM_BOT_TOKEN'  # Your Telegram Bot Token
-TELEGRAM_CHAT_ID = 'YOUR_TELEGRAM_CHAT_ID'  # Your Telegram Chat ID for notifications
+TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "")  # Your Telegram Bot Token
+TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID", "")  # Your Telegram Chat ID for notifications
 
 # File Path for Access Token Storage (OPTIONAL - Modify path as needed)
-ACCESS_TOKEN_PATH = '/path/to/your/access_token.txt'  # Update with your preferred path
+ACCESS_TOKEN_PATH = os.getenv("ACCESS_TOKEN_FILE", "./config/access_token.txt")  # Update with your preferred path
 
 # Retry Configuration (OPTIONAL - Modify retry behavior)
 MAX_LOGIN_RETRIES = 3  # Maximum number of login attempts
@@ -228,6 +231,7 @@ class KiteAutoLogin:
             logging.info("Performing 2FA authentication...")
             twofa_code = self.generate_totp()
 
+
             twofa_response = req_session.post(
                 self.config.TWOFA_URL,
                 data={
@@ -249,7 +253,7 @@ class KiteAutoLogin:
                 f"{self.config.CONNECT_URL}{self.config.API_KEY}",
                 timeout=30
             )
-
+            logging.info(f"api_session response received: {api_session.text}, URL: {api_session.url}, Status Code: {api_session.status_code}, Headers: {api_session.headers}, Cookies: {api_session.cookies}, History: {api_session.history}, Content: {api_session.content}, Encoding: {api_session.encoding}, Reason: {api_session.reason}, Elapsed: {api_session.elapsed}, Request: {api_session.request}")
             # Extract request token from URL
             if "request_token=" not in api_session.url:
                 raise Exception("Request token not found in response URL")
