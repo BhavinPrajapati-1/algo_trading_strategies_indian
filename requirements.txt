@@ -5,19 +5,17 @@
 # ==========================================
 # API and Trading Libraries
 # ==========================================
-NorenRestApiPy>=0.0.22
+NorenRestApiPy>=0.0.23
 requests>=2.28.0
 kiteconnect>=4.0.0
+upstox-python-sdk>=2.0.0   # Upstox API v2 SDK for broker integration
 
 # ==========================================
-# Database Libraries (Optional - only needed for PostgreSQL historical data storage)
+# Database Libraries
 # ==========================================
-# Uncomment ONE of these if you need PostgreSQL support:
-# psycopg2-binary>=2.9.0  # Recommended: Pre-compiled (easier install)
-# psycopg2>=2.9.0         # Alternative: Requires PostgreSQL dev libraries
-#
-# Note: psycopg2-binary may not have wheels for all platforms (macOS/Windows + Python 3.8)
-# If installation fails, you can skip it or install PostgreSQL development libraries first
+psycopg2-binary>=2.9.0
+# Alternative for psycopg2-binary (use one or the other)
+# psycopg2>=2.9.0
 
 # ==========================================
 # Data Processing Libraries
@@ -34,16 +32,35 @@ python-dotenv>=0.19.0
 # ==========================================
 # Utility Libraries
 # ==========================================
-# Note: concurrent.futures is built-in for Python 3.2+ (no external package needed)
+concurrent-futures>=3.1.1; python_version < '3.2'
+# Note: concurrent.futures is built-in for Python 3.2+
 PyYAML>=6.0
 Flask>=2.0.0
 
 # ==========================================
-# Optional: For enhanced data processing
+# Notification Services
 # ==========================================
-# sqlalchemy>=1.4.0
-# matplotlib>=3.5.0
-# plotly>=5.0.0
+python-telegram-bot>=20.0   # Telegram bot API for trading notifications
+
+# ==========================================
+# Analytics and Reporting Libraries (Optional but Recommended)
+# ==========================================
+# These are needed for advanced analytics features:
+# - Report generation (HTML/PDF reports)
+# - Performance attribution analysis
+# - Backtesting framework
+# - Strategy comparison and visualization
+# - Trading dashboards
+
+# Visualization
+matplotlib>=3.5.0          # For charts and graphs
+plotly>=5.0.0              # For interactive visualizations
+
+# Templating (for HTML reports)
+jinja2>=3.0.0              # HTML template engine
+
+# Data Analysis (Optional)
+# sqlalchemy>=1.4.0        # SQL toolkit (if using advanced DB features)
 
 # ==========================================
 # Development and Testing (Optional)
@@ -55,5 +72,5 @@ Flask>=2.0.0
 # ==========================================
 # System Requirements
 # ==========================================
-# Python >= 3.8 (recommended: 3.10 or 3.11)
-# PostgreSQL >= 10.0 (optional, for historical data storage)
+# Python >= 3.6
+# PostgreSQL >= 10.0
