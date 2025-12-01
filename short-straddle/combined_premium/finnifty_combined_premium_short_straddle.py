@@ -1,20 +1,34 @@
+import os
 from kiteconnect import KiteConnect
 import datetime as dt
 import time
 import pandas as pd
+from dotenv import load_dotenv
 
-# Your Zerodha Kite Connect API key, unique to your account, used for authentication.
-api_key = ''
+load_dotenv()
 
-# Access token read from a file. This token is used to authenticate your session with the Kite Connect API.
-# It's typically obtained after a successful login and has a limited validity period.
-access_token_zer = open("/home/ubuntu/utilities/", 'r').read()
+api_key = os.getenv('ZERODHA_API_KEY', "")
+api_secret = os.getenv('ZERODHA_API_SECRET', "")
+access_token = os.getenv('ZERODHA_ACCESS_TOKEN', "")
+
+# Validate credentials are loaded
+if not api_key or not api_secret or not access_token:
+    print("⚠️  ERROR: Credentials not found in environment variables")
+    print("Please ensure your .env file contains:")
+    print("  - ZERODHA_API_KEY")
+    print("  - ZERODHA_API_SECRET")
+    print("  - ZERODHA_ACCESS_TOKEN")
+    print("")
+    print("Run: python zerodha_manual_auth.py to authenticate")
+    print("See AUTHENTICATION.md for setup instructions")
+    import sys
+    sys.exit(1)
 
 # Initialize the KiteConnect object with your API key.
 kite = KiteConnect(api_key=api_key)
 
 # Set the access token for the session to authenticate your API requests.
-kite.set_access_token(access_token_zer)
+kite.set_access_token(access_token)
 
 # Define the time at which you want to enter the trades. This is set before market opening.
 trade_entry_time = dt.time(hour=8, minute=45, second=10)

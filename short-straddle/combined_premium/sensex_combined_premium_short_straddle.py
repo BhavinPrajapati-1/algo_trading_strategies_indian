@@ -1,14 +1,30 @@
+import os
 from kiteconnect import KiteConnect
 import datetime as dt
 import time
 import pandas as pd
 
 # Your Zerodha Kite Connect API key, unique to your account, used for authentication.
-api_key = ''
+api_key = os.getenv('ZERODHA_API_KEY', "")
 
-# Access token read from a file. This token is used to authenticate your session with the Kite Connect API.
-# It's typically obtained after a successful login and has a limited validity period.
-access_token_zer = open("/home/ubuntu/utilities/", 'r').read()
+access_token_zer = os.getenv('ZERODHA_ACCESS_TOKEN', "")  # Empty string if not set
+api_secret = os.getenv('ZERODHA_API_SECRET', "")
+access_token = os.getenv('ZERODHA_ACCESS_TOKEN', "")
+
+# Validate credentials are loaded
+if not api_key or not api_secret or not access_token:
+    print("⚠️  ERROR: Credentials not found in environment variables")
+    print("Please ensure your .env file contains:")
+    print("  - ZERODHA_API_KEY")
+    print("  - ZERODHA_API_SECRET")
+    print("  - ZERODHA_ACCESS_TOKEN")
+    print("")
+    print("Run: python zerodha_manual_auth.py to authenticate")
+    print("See AUTHENTICATION.md for setup instructions")
+    import sys
+    sys.exit(1)
+if not access_token_zer:
+    access_token_zer = open("./config/access_token.txt", 'r').read().strip()
 
 # Initialize the KiteConnect object with your API key.
 kite = KiteConnect(api_key=api_key)

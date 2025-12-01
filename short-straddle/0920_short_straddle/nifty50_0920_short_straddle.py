@@ -1,11 +1,15 @@
 #  NIFTY 50 0920 Short straddle, % based SL
 
+import os
 from kiteconnect import KiteConnect
 import pandas as pd
 import datetime as dt
 import time
 import logging
 import threading
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -28,9 +32,24 @@ MAX_LOSS_MULTIPLIER = 1.5  # Maximum loss allowed (1.5x of intended SL)
 ENABLE_SL_MONITORING = True  # Enable continuous SL monitoring
 
 # API Configuration
-API_KEY = ""  # Your Zerodha API key
-API_SECRET = ""  # API secret (if needed)
-ACCESS_TOKEN_FILE = "/home/ubuntu/access_token.txt"
+api_key = os.getenv('ZERODHA_API_KEY', "")  # Empty string if not set
+api_secret = os.getenv('ZERODHA_API_SECRET', "")  # Empty string if not set
+access_token = os.getenv('ZERODHA_ACCESS_TOKEN', "")  # Empty string if not set
+ACCESS_TOKEN_FILE = "./config/access_token.txt"  # Path to access token file
+
+# Validate credentials are loaded
+if not api_key or not api_secret or not access_token:
+    print("⚠️  ERROR: Credentials not found in environment variables")
+    print("Please ensure your .env file contains:")
+    print("  - ZERODHA_API_KEY")
+    print("  - ZERODHA_API_SECRET")
+    print("  - ZERODHA_ACCESS_TOKEN")
+    print("")
+    print("Run: python zerodha_manual_auth.py to authenticate")
+    print("See AUTHENTICATION.md for setup instructions")
+    import sys
+    sys.exit(1)
+
 
 # Trading Times
 OPEN_TIME = dt.time(hour=9, minute=15)
@@ -67,8 +86,8 @@ class NiftyTradingBot:
         self.nse_holidays = NSE_HOLIDAYS
 
         # API Configuration
-        self.api_key = API_KEY
-        self.api_secret = API_SECRET
+        self.api_key = api_key
+        self.api_secret = api_secret
 
         # Trading Times
         self.open_time = OPEN_TIME
@@ -77,7 +96,7 @@ class NiftyTradingBot:
         self.sqf_time = SQUARE_OFF_TIME
 
         # Initialize KiteConnect
-        self.access_token = self.load_access_token()
+        self.access_token = access_token if access_token else self.load_access_token()
         self.kite = KiteConnect(api_key=self.api_key)
         self.kite.set_access_token(self.access_token)
 

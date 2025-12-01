@@ -1,3 +1,4 @@
+import os
 from kiteconnect import KiteConnect
 import pandas as pd
 import datetime as dt
@@ -10,10 +11,23 @@ pe_stoploss_per = 23
 nse_holidays = [dt.date(2021, 7, 21), dt.date(2021, 8, 19), dt.date(2021, 9, 10), dt.date(2021, 10, 15),
                 dt.date(2021, 11, 4), dt.date(2021, 11, 5), dt.date(2021, 11, 19)]
 
-api_key = ""
-api_secret = ""
+api_key = os.getenv('ZERODHA_API_KEY', "")  # Empty string if not set
+api_secret = os.getenv('ZERODHA_API_SECRET', "")  # Empty string if not set
+access_token = os.getenv('ZERODHA_ACCESS_TOKEN', "")  # Empty string if not set
 
-access_token = open('/home/ec2-user/.txt', 'r').read()
+# Validate credentials are loaded
+if not api_key or not api_secret or not access_token:
+    print("⚠️  ERROR: Credentials not found in environment variables")
+    print("Please ensure your .env file contains:")
+    print("  - ZERODHA_API_KEY")
+    print("  - ZERODHA_API_SECRET")
+    print("  - ZERODHA_ACCESS_TOKEN")
+    print("")
+    print("Run: python zerodha_manual_auth.py to authenticate")
+    print("See AUTHENTICATION.md for setup instructions")
+    import sys
+    sys.exit(1)
+
 
 trade_entry_time = dt.time(hour=9, minute=59)
 re_entry_time = dt.time(hour=12, minute=30)
