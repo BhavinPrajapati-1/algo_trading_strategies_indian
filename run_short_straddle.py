@@ -119,9 +119,12 @@ def initialize_broker(broker_name: str):
     broker_config = config['broker']
 
     # Create broker using factory
+    # Unpack dictionary as keyword arguments
     broker = BrokerFactory.create(
         broker_name,
-        broker_config
+        api_key=broker_config.get('api_key'),
+        api_secret=broker_config.get('api_secret'),
+        access_token=broker_config.get('access_token')
     )
 
     # Verify authentication
