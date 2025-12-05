@@ -12,11 +12,42 @@ This repository is an **open-source** collection of **algorithmic trading strate
 - **MIDCAP NIFTY**
 - **FIN NIFTY**
 
-### 🔹 **Current Broker Support**
-- ✅ **Zerodha** (Live & Ready to Deploy)
-- ⚙️ **AngelOne, Upstox, Fyers, AliceBlue, etc.** *(Coming Soon!)*
+### 🔹 **Current Broker Support** ✨NEW: Universal Broker Architecture!
+- ✅ **Upstox** (Full Support - Live & Ready)
+- ✅ **Zerodha** (Full Support - Live & Ready)
+- ✅ **Any Broker** (Universal Architecture - Plug & Play!)
+
+**NEW:** The system now features a **broker-agnostic architecture** that allows you to use **ANY broker** (Kotak, Angel One, Fyers, Alice Blue, 5Paisa, etc.) with the same strategy code. Simply implement the broker interface and you're ready to trade!
 
 ## 🚀 Features
+
+### 🌟 **NEW: Universal Short Straddle System** *(Just Released!)*
+A complete, production-ready system for options trading that works with **ANY broker**:
+
+✅ **Broker-Agnostic Design** - Switch brokers without changing strategy code
+✅ **Historical Data Management** - Automatic fetching & SQLite storage
+✅ **Paper Trading Mode** - Test strategies risk-free
+✅ **Telegram Notifications** - Real-time alerts on mobile
+✅ **Risk Management** - Stop loss, targets, trailing stops
+✅ **Simple Configuration** - YAML-based config, no hardcoding
+
+📖 **Complete Guide:** See [COMPLETE_USAGE_GUIDE.md](COMPLETE_USAGE_GUIDE.md) | **Quick Reference:** [QUICK_REFERENCE.md](QUICK_REFERENCE.md)
+
+**Quick Start:**
+```bash
+# 1. Setup
+pip install -r requirements.txt
+python get_upstox_token.py  # Get access token
+cp config/brokers.example.yaml config/brokers.yaml  # Add token here
+
+# 2. Test with paper trading
+python run_short_straddle.py --broker upstox --paper-trading --fetch-history
+
+# 3. Go live
+python run_short_straddle.py --broker upstox --lots 1 --stop-loss 5000 --target 3000
+```
+
+---
 
 ### 📈 **Trading Strategies**
 ✅ **Multiple short-straddle strategies** with different risk management techniques

@@ -74,3 +74,41 @@ settings:
   # Order settings
   default_product_type: "MIS"  # MIS/CNC/NRML
   default_validity: "DAY"  # DAY/IOC
+
+# Telegram Notification Settings
+telegram:
+  # Enable/disable Telegram notifications
+  enabled: true
+
+  # Bot token from @BotFather on Telegram
+  bot_token: "your_telegram_bot_token_here"
+
+  # Your Telegram chat ID (use @userinfobot to get your chat ID)
+  chat_id: "your_telegram_chat_id_here"
+
+  # Notification settings
+  notifications:
+    # Auto-notify on order events
+    notify_orders: true
+    notify_order_placed: true
+    notify_order_executed: true
+    notify_order_cancelled: true
+    notify_order_rejected: true
+
+    # Auto-notify on position events
+    notify_positions: true
+    notify_position_opened: true
+    notify_position_closed: true
+
+    # P&L alerts
+    notify_pnl: true
+    profit_threshold: 5000.0  # Alert when profit reaches this amount
+    loss_threshold: -2000.0   # Alert when loss reaches this amount (negative)
+
+    # Daily summary
+    send_daily_summary: true
+    daily_summary_time: "15:30"  # Time to send daily summary (HH:MM)
+
+    # Error notifications
+    notify_errors: true
+    notify_system_info: false
